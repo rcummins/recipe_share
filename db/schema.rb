@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_25_150411) do
+ActiveRecord::Schema.define(version: 2019_09_26_202519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "recipes", force: :cascade do |t|
+    t.integer "author_id", null: false
+    t.string "title", null: false
+    t.integer "servings", null: false
+    t.decimal "average_taste_rating", default: "0.0"
+    t.decimal "average_effort_rating", default: "0.0"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_recipes_on_author_id"
+    t.index ["average_effort_rating"], name: "index_recipes_on_average_effort_rating"
+    t.index ["average_taste_rating"], name: "index_recipes_on_average_taste_rating"
+    t.index ["title"], name: "index_recipes_on_title", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
@@ -25,4 +39,5 @@ ActiveRecord::Schema.define(version: 2019_09_25_150411) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "recipes", "users", column: "author_id"
 end

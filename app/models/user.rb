@@ -6,6 +6,8 @@ class User < ApplicationRecord
   validates :session_token, presence: true, uniqueness: true
   validates :password, length: { minimum: 6 }, allow_nil: true
 
+  has_many :recipes, foreign_key: :author_id
+
   after_initialize :ensure_session_token
 
   def self.find_by_credentials(form_username, form_password)
