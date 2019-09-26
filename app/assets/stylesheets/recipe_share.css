@@ -1,0 +1,103 @@
+a, button {
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+button {
+  color: white;
+}
+
+.button-nav, .button-logout {
+  margin: 0px 10px;
+  background-color: white;
+  color: #e32636;
+}
+
+.button-session-form {
+  margin: 20px 0 0;
+  background-color: #e32636;
+}
+
+.error-message {
+  color: red;
+}
+
+.error-message li {
+  margin: 0 0 0 30px;
+  list-style: disc;
+}
+
+.error-message p {
+  margin: 0 0 0 10px;
+}
+
+.form-input {
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+form input {
+  width: 140px;
+}
+
+h2 {
+  padding: 10px 0;
+  font-size: 24px;
+}
+
+header {
+  height: 70px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e32636;
+  color: white;
+}
+
+.logo {
+  padding: 0px 20px;
+  font-family: 'Cookie', cursive;
+  font-size: 36px;
+  text-align: center;
+  color: white;
+}
+
+.nav-bar {
+  padding: 0px 10px;
+  display: flex;
+  align-items: center;
+}
+
+.session-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 18px;
+}
+
+.session-form .form-input {
+  width: 250px;
+}

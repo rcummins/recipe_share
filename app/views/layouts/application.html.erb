@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RecipeShare</title>
+    <title>Recipe Share</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <link
+      href="https://fonts.googleapis.com/css?family=Cookie|M+PLUS+Rounded+1c:400,700&display=swap"
+      rel="stylesheet">
     <% if current_user %>
       <script>
         window.currentUser = {

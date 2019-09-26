@@ -42,10 +42,10 @@ class SessionForm extends React.Component {
     }
 
     return(
-      <div className="session-form">
-        <h2>{this.props.formTitle}</h2>
+      <div>
+        <form className="session-form">
 
-        <form>
+          <h2>{this.props.formTitle}</h2>
 
           { errorMessage }
 
