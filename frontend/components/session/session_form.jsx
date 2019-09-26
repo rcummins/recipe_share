@@ -19,17 +19,35 @@ class SessionForm extends React.Component {
     e.preventDefault();
     this.props.submitAction({ user: this.state }).then(
       () => {
-        this.props.history.push('/');
+        this.props.clearSessionErrors();
       }
     );
   }
 
   render() {
+    const { sessionErrors } = this.props;
+
+    let errorMessage;
+    if (sessionErrors.length > 0) {
+      errorMessage = (
+        <div className="error-message">
+          <p>Please fix the following issue(s):</p>
+          <ul>
+            { sessionErrors.map( (error, index) => (
+              <li key={index}>{error}</li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+
     return(
       <div className="session-form">
         <h2>{this.props.formTitle}</h2>
 
         <form>
+
+          { errorMessage }
 
           <div className="form-input">
             <label htmlFor="username">Username:</label>

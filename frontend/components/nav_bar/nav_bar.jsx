@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default ({ currentUser, logout }) => {
+export default ({ currentUser, logout, clearSessionErrors }) => {
   const display = currentUser ? (
     <div className="nav-bar">
 
@@ -17,11 +17,13 @@ export default ({ currentUser, logout }) => {
 
       <Link
         className="button-nav"
-        to="/signup" >Sign up</Link>
+        to="/signup"
+        onClick={clearSessionErrors} >Sign up</Link>
 
       <Link
         className="button-nav"
-        to="/login" >Log in</Link>
+        to="/login"
+        onClick={clearSessionErrors} >Log in</Link>
 
     </div>
   )
