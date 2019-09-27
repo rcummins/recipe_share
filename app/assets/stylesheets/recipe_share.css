@@ -32,7 +32,7 @@ button {
   color: #e32636;
 }
 
-.button-session-form {
+.button-session-form, .button-recipe-form {
   margin: 20px 0 0;
   background-color: #e32636;
 }
