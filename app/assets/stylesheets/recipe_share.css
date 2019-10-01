@@ -26,6 +26,14 @@ button {
   color: white;
 }
 
+.button-add-input {
+  background-color: #2695e3;
+}
+
+.button-delete-input {
+  background-color: #e32695;
+}
+
 .button-nav, .button-logout {
   margin: 0px 10px;
   background-color: white;

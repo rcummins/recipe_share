@@ -5,8 +5,25 @@ class RecipeForm extends React.Component {
     super(props);
     this.state = this.props.formData;
 
+    this.addInput = this.addInput.bind(this);
+    this.deleteInput = this.deleteInput.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  addInput(key) {
+    return e => {
+      e.preventDefault();
+      this.setState({ [key]: [...this.state[key], ''] });
+    };
+  }
+
+  deleteInput(key, idx) {
+    return e => {
+      e.preventDefault();
+      let arr = this.state[key];
+      this.setState({ [key]: [...arr.slice(0, idx), ...arr.slice(idx + 1)] });
+    };
   }
 
   handleInput(e) {
@@ -102,6 +119,7 @@ class RecipeForm extends React.Component {
 
             { this.state.ingredients.map( (ingredient, index) => (
               <div className="form-input" key={`ingredients-${index}`}>
+
                 <label htmlFor="ingredients">Ingredient:</label>
                 <input
                   type="text"
@@ -110,8 +128,20 @@ class RecipeForm extends React.Component {
                   onChange={this.handleInput}
                   value={ingredient}
                 />
+
+                { index > 0 ?
+                  <button
+                    className="button-delete-input"
+                    onClick={this.deleteInput('ingredients', index)}
+                  >Delete ingredient</button>
+                : ''}
               </div>
             ))}
+
+            <button
+              className="button-add-input"
+              onClick={this.addInput('ingredients')}
+            >Add another ingredient</button>
 
           </section>
 
@@ -121,14 +151,27 @@ class RecipeForm extends React.Component {
 
             { this.state.instructions.map( (instruction, index) => (
               <div className="form-input" key={`instructions-${index}`}>
+
                 <label htmlFor="instructions">Step {index + 1}:</label>
                 <textarea
                   id="instructions"
                   data-index={index}
                   onChange={this.handleInput}
                   value={instruction}></textarea>
+
+                { index > 0 ?
+                  <button
+                    className="button-delete-input"
+                    onClick={this.deleteInput('instructions', index)}
+                  >Delete step</button>
+                : ''}
               </div>
             ))}
+
+            <button
+              className="button-add-input"
+              onClick={this.addInput('instructions')}
+            >Add another step</button>
 
           </section>
 
