@@ -3,25 +3,66 @@ import React from 'react';
 class RecipeForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      title: '',
-      servings: ''
-    };
+    this.state = this.props.formData;
 
+    this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleInput(key) {
-    return e => this.setState({ [key]: e.target.value });
+  handleInput(e) {
+    if (['ingredients', 'instructions'].includes(e.target.id)) {
+      let arr = this.state[e.target.id];
+      arr[e.target.dataset.index] = e.target.value;
+      this.setState({ [e.target.id]: arr });
+    } else {
+      this.setState({ [e.target.id]: e.target.value } );
+    }
   }
 
   handleSubmit(e) {
     e.preventDefault();
 
-    let newRecipe = { recipe: this.state };
-    newRecipe.recipe.author_id = this.props.currentUser.id;
-    this.props.submitAction(newRecipe).then(
-      () => {
+    let formRecipe = {
+      recipe: {
+        author_id: this.props.currentUser.id,
+        title: this.state.title,
+        servings: this.state.servings
+      }
+    };
+
+    this.props.submitAction(formRecipe).then(
+      recipeAction => {
+
+        // loop over ingredients to dispatch an action for each ingredient
+        this.state.ingredients.forEach( ingredient => {
+
+          let formIngredient = {
+            ingredient: {
+              recipe_id: recipeAction.recipe.id,
+              ingredient: ingredient
+            }
+          };
+
+          this.props.ingredientAction(formIngredient);
+
+        });
+
+        // loop over instructions to dispatch an action for each instruction
+        this.state.instructions.forEach( (instruction, index) => {
+
+          let formInstruction = {
+            instruction: {
+              recipe_id: recipeAction.recipe.id,
+              step_number: index + 1,
+              instruction: instruction
+            }
+          };
+
+          this.props.instructionAction(formInstruction);
+
+        });
+
+        // redirect to the root page
         this.props.history.push("/");
       }
     );
@@ -39,7 +80,7 @@ class RecipeForm extends React.Component {
             <input
               type="text"
               id="title"
-              onChange={this.handleInput('title')}
+              onChange={this.handleInput}
               value={this.state.title}
             />
           </div>
@@ -50,10 +91,46 @@ class RecipeForm extends React.Component {
               type="number"
               id="servings"
               min="1"
-              onChange={this.handleInput('servings')}
+              onChange={this.handleInput}
               value={this.state.servings}
             />
           </div>
+
+          <section>
+
+            <h3>Ingredients</h3>
+
+            { this.state.ingredients.map( (ingredient, index) => (
+              <div className="form-input" key={`ingredients-${index}`}>
+                <label htmlFor="ingredients">Ingredient:</label>
+                <input
+                  type="text"
+                  id="ingredients"
+                  data-index={index}
+                  onChange={this.handleInput}
+                  value={ingredient}
+                />
+              </div>
+            ))}
+
+          </section>
+
+          <section>
+
+            <h3>Instructions</h3>
+
+            { this.state.instructions.map( (instruction, index) => (
+              <div className="form-input" key={`instructions-${index}`}>
+                <label htmlFor="instructions">Step {index + 1}:</label>
+                <textarea
+                  id="instructions"
+                  data-index={index}
+                  onChange={this.handleInput}
+                  value={instruction}></textarea>
+              </div>
+            ))}
+
+          </section>
 
           <button
             className="button-recipe-form"
