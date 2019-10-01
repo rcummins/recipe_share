@@ -42,39 +42,37 @@ class SessionForm extends React.Component {
     }
 
     return(
-      <div>
-        <form className="session-form">
+      <form className="session-form">
 
-          <h2>{this.props.formTitle}</h2>
+        <h2>{this.props.formTitle}</h2>
 
-          { errorMessage }
+        { errorMessage }
 
-          <div className="form-input">
-            <label htmlFor="username">Username:</label>
-            <input
-              type="text"
-              id="username"
-              onChange={this.handleInput('username')}
-              value={this.state.username}
-            />
-          </div>
+        <div className="form-input">
+          <label htmlFor="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            onChange={this.handleInput('username')}
+            value={this.state.username}
+          />
+        </div>
 
-          <div className="form-input">
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              id="password"
-              onChange={this.handleInput('password')}
-              value={this.state.password}
-            />
-          </div>
+        <div className="form-input">
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            onChange={this.handleInput('password')}
+            value={this.state.password}
+          />
+        </div>
 
-          <button
-            className="button-session-form"
-            onClick={this.handleSubmit}>{this.props.formTitle}</button>
+        <button
+          className="button-submit-form"
+          onClick={this.handleSubmit}>{this.props.formTitle}</button>
 
-        </form>
-      </div>
+      </form>
     )
   }
 };

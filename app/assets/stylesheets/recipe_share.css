@@ -2,7 +2,7 @@ a, button {
   padding: 5px 10px;
   border-radius: 8px;
   font-family: 'M PLUS Rounded 1c', sans-serif;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   border: none;
   cursor: pointer;
@@ -12,14 +12,9 @@ a {
   text-decoration: none;
 }
 
-.app {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 body {
   font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 18px;
 }
 
 button {
@@ -27,6 +22,7 @@ button {
 }
 
 .button-add-input {
+  margin-top: 10px;
   background-color: #2695e3;
 }
 
@@ -40,7 +36,7 @@ button {
   color: #e32636;
 }
 
-.button-session-form, .button-recipe-form {
+.button-submit-form {
   margin: 20px 0 0;
   background-color: #e32636;
 }
@@ -58,21 +54,17 @@ button {
   margin: 0 0 0 10px;
 }
 
-.form-input {
-  margin: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-form input {
-  width: 140px;
-}
-
 h2 {
-  padding: 10px 0;
+  padding: 20px 0;
   font-size: 24px;
+  font-weight: 700;
+}
+
+h3 {
+  margin: 20px 0;
+  font-family: 'Cookie', cursive;
+  font-size: 36px;
+  color: #e32636;
 }
 
 header {
@@ -99,13 +91,58 @@ header {
   align-items: center;
 }
 
+.recipe-form {
+  margin-left: 20px;
+}
+
+.recipe-form .form-input {
+  margin: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.recipe-form label {
+  margin-right: 10px;
+  padding: 5px 0;
+}
+
+.recipe-form .title input {
+  width: 400px;
+}
+
+.recipe-form .servings input {
+  width: 50px;
+}
+
+.recipe-form .ingredient input {
+  width: 353px;
+  margin-right: 10px
+}
+
+.recipe-form .instruction textarea {
+  width: 386px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.recipe-form .button-submit-form {
+  margin-top: 50px;
+}
+
 .session-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 18px;
 }
 
 .session-form .form-input {
   width: 250px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+}
+
+.session-form input {
+  width: 140px;
 }

@@ -105,102 +105,104 @@ class RecipeForm extends React.Component {
     }
 
     return(
-      <div>
-        <form className="recipe-form">
+      <form className="recipe-form">
 
-          <h2>{this.props.formTitle}</h2>
+        <h2>{this.props.formTitle}</h2>
 
-          { recipeErrorMessage }
+        { recipeErrorMessage }
 
-          <div className="form-input">
-            <label htmlFor="title">Title:</label>
-            <input
-              type="text"
-              id="title"
-              onChange={this.handleInput}
-              value={this.state.title}
-            />
-          </div>
+        <div className="form-input title">
+          <label htmlFor="title">Title:</label>
+          <input
+            type="text"
+            id="title"
+            onChange={this.handleInput}
+            value={this.state.title}
+          />
+        </div>
 
-          <div className="form-input">
-            <label htmlFor="servings">Servings:</label>
-            <input
-              type="number"
-              id="servings"
-              min="1"
-              onChange={this.handleInput}
-              value={this.state.servings}
-            />
-          </div>
+        <div className="form-input servings">
+          <label htmlFor="servings">Servings:</label>
+          <input
+            type="number"
+            id="servings"
+            min="1"
+            onChange={this.handleInput}
+            value={this.state.servings}
+          />
+        </div>
 
-          <section>
+        <section>
 
-            <h3>Ingredients</h3>
+          <h3>Ingredients</h3>
 
-            { this.state.ingredients.map( (ingredient, index) => (
-              <div className="form-input" key={`ingredients-${index}`}>
+          { this.state.ingredients.map( (ingredient, index) => (
+            <div
+              className="form-input ingredient"
+              key={`ingredients-${index}`}>
 
-                <label htmlFor="ingredients">Ingredient:</label>
-                <input
-                  type="text"
-                  id="ingredients"
-                  data-index={index}
-                  onChange={this.handleInput}
-                  value={ingredient}
-                />
+              <label htmlFor="ingredients">Ingredient:</label>
+              <input
+                type="text"
+                id="ingredients"
+                data-index={index}
+                onChange={this.handleInput}
+                value={ingredient}
+              />
 
-                { index > 0 ?
-                  <button
-                    className="button-delete-input"
-                    onClick={this.deleteInput('ingredients', index)}
-                  >Delete ingredient</button>
-                : ''}
-              </div>
-            ))}
-
-            <button
-              className="button-add-input"
-              onClick={this.addInput('ingredients')}
-            >Add another ingredient</button>
-
-          </section>
-
-          <section>
-
-            <h3>Instructions</h3>
-
-            { this.state.instructions.map( (instruction, index) => (
-              <div className="form-input" key={`instructions-${index}`}>
-
-                <label htmlFor="instructions">Step {index + 1}:</label>
-                <textarea
-                  id="instructions"
-                  data-index={index}
-                  onChange={this.handleInput}
-                  value={instruction}></textarea>
-
-                { index > 0 ?
-                  <button
-                    className="button-delete-input"
-                    onClick={this.deleteInput('instructions', index)}
-                  >Delete step</button>
-                : ''}
-              </div>
-            ))}
-
-            <button
-              className="button-add-input"
-              onClick={this.addInput('instructions')}
-            >Add another step</button>
-
-          </section>
+              { index > 0 ?
+                <button
+                  className="button-delete-input"
+                  onClick={this.deleteInput('ingredients', index)}
+                >Delete ingredient</button>
+              : ''}
+            </div>
+          ))}
 
           <button
-            className="button-recipe-form"
-            onClick={this.handleSubmit}
-          >{this.props.formSubmitButtonText}</button>
-        </form>
-      </div>
+            className="button-add-input"
+            onClick={this.addInput('ingredients')}
+          >Add another ingredient</button>
+
+        </section>
+
+        <section>
+
+          <h3>Instructions</h3>
+
+          { this.state.instructions.map( (instruction, index) => (
+            <div
+              className="form-input instruction"
+              key={`instructions-${index}`}>
+
+              <label htmlFor="instructions">Step {index + 1}:</label>
+              <textarea
+                id="instructions"
+                data-index={index}
+                onChange={this.handleInput}
+                value={instruction}></textarea>
+
+              { index > 0 ?
+                <button
+                  className="button-delete-input"
+                  onClick={this.deleteInput('instructions', index)}
+                >Delete step</button>
+              : ''}
+            </div>
+          ))}
+
+          <button
+            className="button-add-input"
+            onClick={this.addInput('instructions')}
+          >Add another step</button>
+
+        </section>
+
+        <button
+          className="button-submit-form"
+          onClick={this.handleSubmit}
+        >{this.props.formSubmitButtonText}</button>
+      </form>
     );
   }
 };
