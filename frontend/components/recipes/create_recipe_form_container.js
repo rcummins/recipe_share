@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { createRecipe } from '../../actions/recipe_actions';
 import { createIngredient } from '../../actions/ingredient_actions';
 import { createInstruction } from '../../actions/instruction_actions';
+import { clearRecipeErrors } from '../../actions/recipe_error_actions';
 import RecipeForm from './recipe_form';
 
 const mapStateToProps = state => ({
@@ -14,7 +15,8 @@ const mapStateToProps = state => ({
   },
   formTitle: 'Create a new recipe',
   formSubmitButtonText: 'Create recipe',
-  currentUser: state.session.currentUser
+  currentUser: state.session.currentUser,
+  recipeErrors: state.errors.recipeErrors
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -24,7 +26,8 @@ const mapDispatchToProps = dispatch => ({
   ),
   instructionAction: formInstruction => (
     dispatch(createInstruction(formInstruction))
-  )
+  ),
+  clearRecipeErrors: () => dispatch(clearRecipeErrors())
 });
 
 export default connect(

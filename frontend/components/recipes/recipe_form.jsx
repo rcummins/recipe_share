@@ -50,6 +50,8 @@ class RecipeForm extends React.Component {
     this.props.submitAction(formRecipe).then(
       recipeAction => {
 
+        this.props.clearRecipeErrors();
+
         // loop over ingredients to dispatch an action for each ingredient
         this.state.ingredients.forEach( ingredient => {
 
@@ -86,11 +88,29 @@ class RecipeForm extends React.Component {
   }
 
   render() {
+    const { recipeErrors } = this.props;
+
+    let recipeErrorMessage;
+    if (recipeErrors.length > 0) {
+      recipeErrorMessage = (
+        <div className="error-message">
+          <p>Please fix the following issue(s):</p>
+          <ul>
+            {recipeErrors.map((error, index) => (
+              <li key={index}>{error}</li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+
     return(
       <div>
         <form className="recipe-form">
 
           <h2>{this.props.formTitle}</h2>
+
+          { recipeErrorMessage }
 
           <div className="form-input">
             <label htmlFor="title">Title:</label>
