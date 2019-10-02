@@ -26,6 +26,12 @@ export const fetchRecipes = () => dispatch => (
   )
 );
 
+export const fetchRecipe = recipeId => dispatch => (
+  RecipeAPIUtil.fetchRecipe(recipeId).then(
+    recipe => dispatch(receiveRecipe(recipe))
+  )
+);
+
 export const createRecipe = formRecipe => dispatch => (
   RecipeAPIUtil.createRecipe(formRecipe).then(
     recipe => dispatch(receiveRecipe(recipe)),
