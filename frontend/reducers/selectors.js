@@ -8,3 +8,7 @@ export const instructionsArray = ({ instructions }) => {
   let instructionsUnsorted = instructionIds.map( id => instructions[id] );
   return instructionsUnsorted.sort( (a, b) => a.step_number - b.step_number );
 };
+
+export const selectRecipeAuthor = ( state, recipe ) => {
+  return recipe ? state.entities.users[recipe.author_id] : null;
+};

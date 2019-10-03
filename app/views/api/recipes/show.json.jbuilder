@@ -23,3 +23,9 @@ json.instructions do
     end
   end
 end
+
+json.author do
+  json.set! @recipe.author.id do
+    json.partial! 'api/users/user', user: @recipe.author
+  end
+end

@@ -18,7 +18,7 @@ class RecipeDetail extends React.Component {
   }
 
   render() {
-    const { recipe, ingredients, instructions } = this.props;
+    const { recipe, ingredients, instructions, author } = this.props;
 
     if (!recipe) {
       return(<p>Loading...</p>);
@@ -28,6 +28,8 @@ class RecipeDetail extends React.Component {
       <div className="recipe-detail">
 
         <h2>{recipe.title}</h2>
+
+        <p>By {author.username}</p>
 
         <p>Servings: {recipe.servings}</p>
 
