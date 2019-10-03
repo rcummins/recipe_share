@@ -1,10 +1,3 @@
-export const fetchIngredients = recipeId => (
-  $.ajax({
-    method: 'GET',
-    url: `/api/recipes/${recipeId}/ingredients`
-  })
-);
-
 export const createIngredient = ingredient => (
   $.ajax({
     method: 'POST',

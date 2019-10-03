@@ -1,8 +1,4 @@
 class Api::InstructionsController < ApplicationController
-  def index
-    render json: Instruction.where(recipe_id: params[:recipe_id])
-  end
-
   def create
     @instruction = Instruction.new(instruction_params)
 

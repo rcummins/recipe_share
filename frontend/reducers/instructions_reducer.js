@@ -1,5 +1,4 @@
 import {
-  RECEIVE_INSTRUCTIONS,
   RECEIVE_INSTRUCTION,
   REMOVE_INSTRUCTION
 } from '../actions/instruction_actions';
@@ -8,15 +7,7 @@ import { RECEIVE_RECIPE_DETAIL } from '../actions/recipe_actions';
 const instructionsReducer = ( oldState = {}, action ) => {
   Object.freeze(oldState);
 
-  let newState;
   switch(action.type) {
-
-    case RECEIVE_INSTRUCTIONS:
-      newState = {};
-      action.instructions.forEach( instruction => (
-        newState[instruction.id] = instruction
-      ));
-      return newState;
 
     case RECEIVE_INSTRUCTION:
       let newInstruction = {};
@@ -24,7 +15,7 @@ const instructionsReducer = ( oldState = {}, action ) => {
       return Object.assign({}, oldState, newInstruction);
 
     case REMOVE_INSTRUCTION:
-      newState = Object.assign({}, oldState);
+      let newState = Object.assign({}, oldState);
       delete newState[action.instruction.id];
       return newState;
 

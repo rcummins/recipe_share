@@ -1,8 +1,4 @@
 class Api::IngredientsController < ApplicationController
-  def index
-    render json: Ingredient.where(recipe_id: params[:recipe_id])
-  end
-
   def create
     @ingredient = Ingredient.new(ingredient_params)
 

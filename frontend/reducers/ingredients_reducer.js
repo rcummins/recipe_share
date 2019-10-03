@@ -1,5 +1,4 @@
 import {
-  RECEIVE_INGREDIENTS,
   RECEIVE_INGREDIENT,
   REMOVE_INGREDIENT
 } from '../actions/ingredient_actions';
@@ -8,15 +7,7 @@ import { RECEIVE_RECIPE_DETAIL } from '../actions/recipe_actions';
 const ingredientsReducer = ( oldState = {}, action ) => {
   Object.freeze(oldState);
 
-  let newState;
   switch(action.type) {
-
-    case RECEIVE_INGREDIENTS:
-      newState = {};
-      action.ingredients.forEach(ingredient => (
-        newState[ingredient.id] = ingredient
-      ));
-      return newState;
 
     case RECEIVE_INGREDIENT:
       let newIngredient = {};
@@ -24,7 +15,7 @@ const ingredientsReducer = ( oldState = {}, action ) => {
       return Object.assign({}, oldState, newIngredient);
 
     case REMOVE_INGREDIENT:
-      newState = Object.assign({}, oldState);
+      let newState = Object.assign({}, oldState);
       delete newState[action.ingredient.id];
       return newState;
 
