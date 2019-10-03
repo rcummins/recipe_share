@@ -20,7 +20,7 @@ class RecipeDetail extends React.Component {
   render() {
     const { recipe, ingredients, instructions, author } = this.props;
 
-    if (!recipe) {
+    if (!recipe || !author) {
       return(<p>Loading...</p>);
     }
 
