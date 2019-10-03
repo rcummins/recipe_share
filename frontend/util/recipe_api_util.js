@@ -5,7 +5,7 @@ export const fetchRecipes = () => (
   })
 );
 
-export const fetchRecipe = recipeId => (
+export const fetchRecipeDetail = recipeId => (
   $.ajax({
     method: 'GET',
     url: `/api/recipes/${recipeId}`

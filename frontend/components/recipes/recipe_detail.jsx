@@ -7,24 +7,20 @@ class RecipeDetail extends React.Component {
 
   componentDidMount() {
     const { recipeId } = this.props.match.params;
-    this.props.fetchRecipe(recipeId);
-    this.props.fetchIngredients(recipeId);
-    this.props.fetchInstructions(recipeId);
+    this.props.fetchRecipeDetail(recipeId);
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.match.params.recipeId != this.props.match.params.recipeId) {
       const { recipeId } = this.props.match.params;
-      this.props.fetchRecipe(recipeId);
-      this.props.fetchIngredients(recipeId);
-      this.props.fetchInstructions(recipeId);
+      this.props.fetchRecipeDetail(recipeId);
     }
   }
 
   render() {
     const { recipe, ingredients, instructions } = this.props;
 
-    if (!recipe || ingredients.length === 0 || instructions.length === 0 ) {
+    if (!recipe) {
       return(<p>Loading...</p>);
     }
 

@@ -3,6 +3,7 @@ import {
   RECEIVE_INGREDIENT,
   REMOVE_INGREDIENT
 } from '../actions/ingredient_actions';
+import { RECEIVE_RECIPE_DETAIL } from '../actions/recipe_actions';
 
 const ingredientsReducer = ( oldState = {}, action ) => {
   Object.freeze(oldState);
@@ -26,6 +27,9 @@ const ingredientsReducer = ( oldState = {}, action ) => {
       newState = Object.assign({}, oldState);
       delete newState[action.ingredient.id];
       return newState;
+
+    case RECEIVE_RECIPE_DETAIL:
+      return Object.assign({}, action.payload.ingredients);
 
     default:
       return oldState;
