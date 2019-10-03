@@ -134,7 +134,7 @@ class RecipeForm extends React.Component {
 
         <section>
 
-          <h3>Ingredients</h3>
+          <h4>Ingredients</h4>
 
           { this.state.ingredients.map( (ingredient, index) => (
             <div
@@ -168,7 +168,7 @@ class RecipeForm extends React.Component {
 
         <section>
 
-          <h3>Instructions</h3>
+          <h4>Instructions</h4>
 
           { this.state.instructions.map( (instruction, index) => (
             <div

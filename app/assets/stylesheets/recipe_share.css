@@ -46,12 +46,12 @@ button {
 }
 
 .error-message li {
-  margin: 0 0 0 30px;
+  margin-left: 30px;
   list-style: disc;
 }
 
 .error-message p {
-  margin: 0 0 0 10px;
+  margin-left: 10px;
 }
 
 h2 {
@@ -62,8 +62,15 @@ h2 {
 
 h3 {
   margin: 20px 0;
-  font-family: 'Cookie', cursive;
-  font-size: 36px;
+  font-family: 'Delius', cursive;
+  font-size: 26px;
+  color: #e32636;
+}
+
+h4 {
+  margin: 20px 0;
+  font-family: 'Delius', cursive;
+  font-size: 22px;
   color: #e32636;
 }
 
@@ -79,8 +86,8 @@ header {
 
 .logo {
   padding: 0px 20px;
-  font-family: 'Cookie', cursive;
-  font-size: 36px;
+  font-family: 'Delius', cursive;
+  font-size: 30px;
   text-align: center;
   color: white;
 }
@@ -91,8 +98,30 @@ header {
   align-items: center;
 }
 
-.recipe-form {
+.recipe-detail, .recipe-form {
+  max-width: 700px;
+  margin: 0 auto;
+  padding-left: 20px;
+}
+
+.recipe-detail li {
   margin-left: 20px;
+  margin-bottom: 5px;
+  list-style: disc;
+}
+
+.recipe-detail .recipe-author {
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.recipe-detail td {
+  padding-bottom: 10px;
+}
+
+.recipe-detail td:first-child {
+  padding-right: 10px;
 }
 
 .recipe-form .form-input {

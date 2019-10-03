@@ -27,15 +27,15 @@ class RecipeDetail extends React.Component {
     return(
       <div className="recipe-detail">
 
-        <h2>{recipe.title}</h2>
+        <h3>{recipe.title}</h3>
 
-        <p>By {author.username}</p>
+        <p className="recipe-author">By {author.username}</p>
 
         <p>Servings: {recipe.servings}</p>
 
         <section>
 
-          <h3>Ingredients</h3>
+          <h4>Ingredients</h4>
 
           <ul>
             { ingredients.map( (ingredient, index) => (
@@ -46,13 +46,13 @@ class RecipeDetail extends React.Component {
 
         <section>
 
-          <h3>Instructions</h3>
+          <h4>Instructions</h4>
 
           <table>
             <tbody>
               { instructions.map( (instruction, index) => (
                 <tr key={`instruction-${index}`}>
-                  <td>{instruction.step_number}</td>
+                  <td>{instruction.step_number}.</td>
                   <td>{instruction.instruction}</td>
                 </tr>
               ))}
