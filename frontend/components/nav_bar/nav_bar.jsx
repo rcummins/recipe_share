@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 export default ({ currentUser, logout, clearSessionErrors }) => {
-  const display = currentUser ? (
-    <div className="nav-bar">
+  const displaySessionInfo = currentUser ? (
+    <div className="nav-session-info">
 
       <p className="nav-message">Welcome, { currentUser.username }</p>
 
@@ -13,7 +13,7 @@ export default ({ currentUser, logout, clearSessionErrors }) => {
 
     </div>
   ) : (
-    <div className="nav-bar">
+    <div className="nav-session-info">
 
       <Link
         className="button-nav"
@@ -27,12 +27,42 @@ export default ({ currentUser, logout, clearSessionErrors }) => {
 
     </div>
   )
+
+  const displayNavLinks = currentUser ? (
+    <div className="nav-links">
+
+      <NavLink
+        className="nav-link"
+        activeClassName="active"
+        exact={true}
+        to="/" >All Recipes</NavLink>
+
+      <NavLink
+        className="nav-link"
+        activeClassName="active"
+        to="/myrecipes" >My Recipes</NavLink>
+
+    </div>
+  ) : (
+    <div className="nav-links">
+
+      <NavLink
+        className="nav-link"
+        activeClassName="active"
+        exact={true}
+        to="/" >All Recipes</NavLink>
+
+    </div>
+  )
+
   return(
     <header>
 
       <Link className="logo" to="/">Recipe Share</Link>
 
-      { display }
+      { displayNavLinks}
+
+      { displaySessionInfo }
     </header>
   )
 }
