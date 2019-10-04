@@ -25,7 +25,7 @@ class AllRecipes extends React.Component {
 
           <tbody>
             { this.props.recipes.map( (recipe, index) => (
-              <tr>
+              <tr key={index}>
                 <td className="col-recipe">
                   <Link to={`/recipes/${recipe.id}`}>{recipe.title}</Link>
                 </td>
