@@ -12,6 +12,48 @@ a {
   text-decoration: none;
 }
 
+.all-recipes {
+  margin: 20px;
+}
+
+.all-recipes table {
+  margin: 0 auto;
+  font-size: 20px;
+}
+
+.all-recipes th {
+  padding: 15px;
+  font-weight: 700;
+  color: #e32636;
+}
+
+.all-recipes tr {
+  border-width: 10px 0;
+  border-style: solid;
+  border-color: white;
+}
+
+.all-recipes td {
+  vertical-align: middle;
+  padding: 15px;
+  font-weight: 400;
+  background-color: #fce5e7;
+}
+
+.all-recipes a {
+  padding: 0;
+  font-size: 20px;
+  color: black;
+}
+
+.all-recipes .col-recipe {
+  text-align: left;
+}
+
+.all-recipes .col-rating {
+  text-align: center;
+}
+
 body {
   font-family: 'M PLUS Rounded 1c', sans-serif;
   font-size: 18px;

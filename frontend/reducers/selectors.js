@@ -9,6 +9,11 @@ export const instructionsArray = ({ instructions }) => {
   return instructionsUnsorted.sort( (a, b) => a.step_number - b.step_number );
 };
 
+export const recipesArray = ({ recipes }) => {
+  let recipeIds = Object.keys(recipes);
+  return recipeIds.map( id => recipes[id] );
+};
+
 export const selectRecipeAuthor = ( state, recipe ) => {
   return recipe ? state.entities.users[recipe.author_id] : null;
 };
