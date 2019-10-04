@@ -81,8 +81,8 @@ class RecipeForm extends React.Component {
 
         });
 
-        // redirect to the root page
-        this.props.history.push("/");
+        // redirect to a list of user's authored recipes
+        this.props.history.push("/myrecipes");
       }
     );
   }
