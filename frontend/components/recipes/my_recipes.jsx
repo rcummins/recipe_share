@@ -13,6 +13,10 @@ class MyRecipes extends React.Component {
   render() {
     return(
       <div className="recipe-list">
+        <Link
+          className="link-add-recipe"
+          to="/recipes/new">Add a new recipe</Link>
+
         <table>
 
           <thead>
