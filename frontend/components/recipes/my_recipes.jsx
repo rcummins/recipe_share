@@ -12,7 +12,7 @@ class MyRecipes extends React.Component {
 
   render() {
     return(
-      <div className="my-recipes">
+      <div className="recipe-list">
         <table>
 
           <thead>
