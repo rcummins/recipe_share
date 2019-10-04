@@ -1,11 +1,5 @@
 json.recipe do
-  json.extract! @recipe,
-    :id,
-    :author_id,
-    :title,
-    :servings,
-    :average_taste_rating,
-    :average_effort_rating
+  json.partial! 'api/recipes/recipe', recipe: @recipe
 end
 
 json.ingredients do

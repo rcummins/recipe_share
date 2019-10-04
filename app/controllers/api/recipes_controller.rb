@@ -1,6 +1,7 @@
 class Api::RecipesController < ApplicationController
   def index
-    render json: Recipe.all
+    @recipes = Recipe.all
+    render :index
   end
 
   def create
@@ -15,6 +16,7 @@ class Api::RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    render :show
   end
 
   def update
