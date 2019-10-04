@@ -8,6 +8,7 @@ import SignupContainer from './session/signup_container';
 import LoginContainer from './session/login_container';
 import CreateRecipeFormContainer from './recipes/create_recipe_form_container';
 import RecipeDetailContainer from './recipes/recipe_detail_container';
+import MyRecipesContainer from './recipes/my_recipes_container';
 
 const App = () => (
   <div className="app">
@@ -19,6 +20,7 @@ const App = () => (
       <ProtectedRoute path="/recipes/new" component={CreateRecipeFormContainer} />
       <Route path="/recipes/:recipeId" component={RecipeDetailContainer} />
     </Switch>
+    <ProtectedRoute path="/myrecipes" component={MyRecipesContainer} />
   </div>
 );
 

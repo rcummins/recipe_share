@@ -32,6 +32,12 @@ export const fetchRecipes = () => dispatch => (
   )
 );
 
+export const fetchMyRecipes = authorId => dispatch => (
+  RecipeAPIUtil.fetchMyRecipes(authorId).then(
+    myRecipes => dispatch(receiveRecipes(myRecipes))
+  )
+);
+
 export const fetchRecipeDetail = recipeId => dispatch => (
   RecipeAPIUtil.fetchRecipeDetail(recipeId).then(
     payload => dispatch(receiveRecipeDetail(payload))

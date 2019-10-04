@@ -5,6 +5,13 @@ export const fetchRecipes = () => (
   })
 );
 
+export const fetchMyRecipes = authorId => (
+  $.ajax({
+    method: 'GET',
+    url: `/api/recipes?author_id=${authorId}`
+  })
+);
+
 export const fetchRecipeDetail = recipeId => (
   $.ajax({
     method: 'GET',
