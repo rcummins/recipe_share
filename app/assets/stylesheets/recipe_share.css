@@ -85,6 +85,7 @@ header {
 }
 
 .link-add-recipe {
+  margin-top: 20px;
   background-color: #2695e3;
   color: white;
 }
@@ -223,6 +224,11 @@ header {
 }
 
 .recipe-list .col-rating {
+  text-align: center;
+}
+
+.recipe-list-empty p {
+  margin: 50px;
   text-align: center;
 }
 
