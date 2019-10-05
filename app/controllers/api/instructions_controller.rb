@@ -10,17 +10,6 @@ class Api::InstructionsController < ApplicationController
     end
   end
 
-  def update
-    @instruction = Instruction.find(params[:id])
-
-    if @instruction.update(instruction_params)
-      render json: @instruction
-    else
-      render json: @instruction.errors.full_messages,
-        status: :unprocessable_entity
-    end
-  end
-
   def destroy
     @instruction = Instruction.find(params[:id])
     @instruction.destroy

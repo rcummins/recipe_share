@@ -10,17 +10,6 @@ class Api::IngredientsController < ApplicationController
     end
   end
 
-  def update
-    @ingredient = Ingredient.find(params[:id])
-
-    if @ingredient.update(ingredient_params)
-      render json: @ingredient
-    else
-      render json: @ingredient.errors.full_messages,
-        status: :unprocessable_entity
-    end
-  end
-
   def destroy
     @ingredient = Ingredient.find(params[:id])
     @ingredient.destroy

@@ -19,12 +19,6 @@ export const createIngredient = formIngredient => dispatch => (
   )
 );
 
-export const updateIngredient = formIngredient => dispatch => (
-  IngredientAPIUtil.updateIngredient(formIngredient).then(
-    ingredient => dispatch(receiveIngredient(ingredient))
-  )
-);
-
 export const deleteIngredient = formIngredient => dispatch => (
   IngredientAPIUtil.deleteIngredient(formIngredient).then(
     ingredient => dispatch(removeIngredient(ingredient))

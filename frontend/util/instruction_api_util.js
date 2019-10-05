@@ -6,14 +6,6 @@ export const createInstruction = instruction => (
   })
 );
 
-export const updateInstruction = instruction => (
-  $.ajax({
-    method: 'PUT',
-    url: `/api/instructions/${instruction.instruction.id}`,
-    data: instruction
-  })
-);
-
 export const deleteInstruction = instruction => (
   $.ajax({
     method: 'DELETE',

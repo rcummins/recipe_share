@@ -6,14 +6,6 @@ export const createIngredient = ingredient => (
   })
 );
 
-export const updateIngredient = ingredient => (
-  $.ajax({
-    method: 'PUT',
-    url: `/api/ingredients/${ingredient.ingredient.id}`,
-    data: ingredient
-  })
-);
-
 export const deleteIngredient = ingredient => (
   $.ajax({
     method: 'DELETE',

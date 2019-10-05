@@ -19,12 +19,6 @@ export const createInstruction = formInstruction => dispatch => (
   )
 );
 
-export const updateInstruction = formInstruction => dispatch => (
-  InstructionAPIUtil.updateInstruction(formInstruction).then(
-    instruction => dispatch(receiveInstruction(instruction))
-  )
-);
-
 export const deleteInstruction = formInstruction => dispatch => (
   InstructionAPIUtil.deleteInstruction(formInstruction).then(
     instruction => dispatch(removeInstruction(instruction))
