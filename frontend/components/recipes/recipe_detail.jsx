@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class RecipeDetail extends React.Component {
   constructor(props) {
@@ -22,6 +23,17 @@ class RecipeDetail extends React.Component {
 
     if (!recipe || !author) {
       return(<p>Loading...</p>);
+    }
+
+    let displayAuthorOptions;
+    if (this.props.currentUser && this.props.currentUser.id === author.id) {
+      displayAuthorOptions = (
+        <div className="recipe-author-options">
+          <Link
+            className="link-edit-recipe"
+            to={`/recipes/${recipe.id}/edit`}>Edit recipe</Link>
+        </div>
+      )
     }
 
     return(
@@ -59,6 +71,8 @@ class RecipeDetail extends React.Component {
             </tbody>
           </table>
         </section>
+
+        { displayAuthorOptions }
       </div>
     );
   }

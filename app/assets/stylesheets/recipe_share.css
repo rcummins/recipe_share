@@ -95,6 +95,11 @@ header {
   color: white;
 }
 
+.link-edit-recipe {
+  background-color: #e37526;
+  color: white;
+}
+
 .logo {
   padding: 0px 20px;
   font-family: 'Delius', cursive;
@@ -152,6 +157,10 @@ header {
 
 .recipe-detail td:first-child {
   padding-right: 10px;
+}
+
+.recipe-detail .recipe-author-options {
+  margin-top: 20px;
 }
 
 .recipe-form .form-input {
@@ -218,7 +227,7 @@ header {
   background-color: #fce5e7;
 }
 
-.recipe-list table a {
+.recipe-list .link-recipe-detail {
   padding: 0;
   font-size: 20px;
   color: black;
