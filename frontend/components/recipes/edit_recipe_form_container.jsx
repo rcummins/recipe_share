@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
 import React from 'react';
 
+import { fetchRecipeDetail, updateRecipe } from '../../actions/recipe_actions';
 import {
-  fetchRecipeDetail,
-  createRecipe,
-  deleteRecipe } from '../../actions/recipe_actions';
-import { createIngredient } from '../../actions/ingredient_actions';
-import { createInstruction } from '../../actions/instruction_actions';
+  createIngredient,
+  deleteIngredient } from '../../actions/ingredient_actions';
+import {
+  createInstruction,
+  deleteInstruction } from '../../actions/instruction_actions';
 import { clearRecipeErrors } from '../../actions/recipe_error_actions';
 import {
   simpleIngredientsArray,
@@ -21,11 +22,27 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchRecipeDetail: recipeId => dispatch(fetchRecipeDetail(recipeId)),
-  submitAction: formRecipe => (
-    dispatch(deleteRecipe(formRecipe)).then(
-      () => dispatch(createRecipe(formRecipe))
-    )
-  ),
+  submitAction: formRecipe => {
+
+    /* fetch and then delete all ingredients and instructions before creating
+    new ingredients and instructions based on the edit recipe form */
+    dispatch(fetchRecipeDetail(formRecipe.recipe.id)).then(
+      recipeAction => {
+        const ingredientIds = Object.keys(recipeAction.payload.ingredients);
+        ingredientIds.forEach( id => (
+          dispatch(deleteIngredient({ ingredient: { id } }))
+        ));
+
+        const instructionIds = Object.keys(recipeAction.payload.instructions);
+        instructionIds.forEach( id => (
+          dispatch(deleteInstruction({ instruction: { id }}))
+        ));
+      }
+    );
+
+    /* update recipe attributes based on the edit recipe form */
+    return dispatch(updateRecipe(formRecipe));
+  },
   ingredientAction: formIngredient => (
     dispatch(createIngredient(formIngredient))
   ),
@@ -70,7 +87,6 @@ class EditRecipeForm extends React.Component {
       history,
       currentUser,
       recipeErrors,
-      deleteRecipe,
       submitAction,
       ingredientAction,
       instructionAction,
@@ -85,7 +101,6 @@ class EditRecipeForm extends React.Component {
         history={history}
         currentUser={currentUser}
         recipeErrors={recipeErrors}
-        deleteRecipe={deleteRecipe}
         submitAction={submitAction}
         ingredientAction={ingredientAction}
         instructionAction={instructionAction}
