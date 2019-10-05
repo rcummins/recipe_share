@@ -65,9 +65,21 @@ class EditRecipeForm extends React.Component {
         instructions: ['']
       }
     };
+
+    this.handleUpdate = this.handleUpdate.bind(this);
   }
 
   componentDidMount() {
+    this.handleUpdate();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.recipeId !== this.props.match.params.recipeId) {
+      this.handleUpdate();
+    }
+  }
+
+  handleUpdate() {
     this.props.fetchRecipeDetail(this.props.match.params.recipeId).then(
       recipeAction => {
         this.setState({
