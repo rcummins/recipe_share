@@ -11,6 +11,19 @@ class RecipeForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    const prevData = prevProps.formData;
+    const newData = this.props.formData;
+
+    if (prevData.id !== newData.id ||
+        prevData.title !== newData.title ||
+        prevData.servings !== newData.servings ||
+        prevData.ingredients.length !== newData.ingredients.length ||
+        prevData.instructions.length !== newData.instructions.length) {
+      this.setState(this.props.formData);
+    }
+  }
+
   addInput(key) {
     return e => {
       e.preventDefault();
@@ -41,6 +54,7 @@ class RecipeForm extends React.Component {
 
     let formRecipe = {
       recipe: {
+        id: this.state.id,
         author_id: this.props.currentUser.id,
         title: this.state.title,
         servings: this.state.servings

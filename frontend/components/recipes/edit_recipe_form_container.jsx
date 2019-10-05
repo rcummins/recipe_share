@@ -1,0 +1,101 @@
+import { connect } from 'react-redux';
+import React from 'react';
+
+import {
+  fetchRecipeDetail,
+  createRecipe,
+  deleteRecipe } from '../../actions/recipe_actions';
+import { createIngredient } from '../../actions/ingredient_actions';
+import { createInstruction } from '../../actions/instruction_actions';
+import { clearRecipeErrors } from '../../actions/recipe_error_actions';
+import {
+  simpleIngredientsArray,
+  simpleInstructionsArray } from '../../reducers/selectors';
+import RecipeForm from './recipe_form';
+
+const mapStateToProps = (state, ownProps) => ({
+  history: ownProps.history,
+  currentUser: state.session.currentUser,
+  recipeErrors: state.errors.recipeErrors
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchRecipeDetail: recipeId => dispatch(fetchRecipeDetail(recipeId)),
+  submitAction: formRecipe => (
+    dispatch(deleteRecipe(formRecipe)).then(
+      () => dispatch(createRecipe(formRecipe))
+    )
+  ),
+  ingredientAction: formIngredient => (
+    dispatch(createIngredient(formIngredient))
+  ),
+  instructionAction: formInstruction => (
+    dispatch(createInstruction(formInstruction))
+  ),
+  clearRecipeErrors: () => dispatch(clearRecipeErrors())
+});
+
+class EditRecipeForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      formData: {
+        id: '',
+        title: '',
+        servings: '',
+        ingredients: [''],
+        instructions: ['']
+      }
+    };
+  }
+
+  componentDidMount() {
+    this.props.fetchRecipeDetail(this.props.match.params.recipeId).then(
+      recipeAction => {
+        this.setState({
+          formData: {
+            id: recipeAction.payload.recipe.id,
+            title: recipeAction.payload.recipe.title,
+            servings: recipeAction.payload.recipe.servings,
+            ingredients: simpleIngredientsArray(recipeAction.payload),
+            instructions: simpleInstructionsArray(recipeAction.payload)
+          }
+        });
+      }
+    );
+  }
+
+  render() {
+    const {
+      history,
+      currentUser,
+      recipeErrors,
+      deleteRecipe,
+      submitAction,
+      ingredientAction,
+      instructionAction,
+      clearRecipeErrors
+    } = this.props;
+
+    return(
+      <RecipeForm
+        formData={this.state.formData}
+        formTitle={'Edit your recipe'}
+        formSubmitButtonText={'Update recipe'}
+        history={history}
+        currentUser={currentUser}
+        recipeErrors={recipeErrors}
+        deleteRecipe={deleteRecipe}
+        submitAction={submitAction}
+        ingredientAction={ingredientAction}
+        instructionAction={instructionAction}
+        clearRecipeErrors={clearRecipeErrors}
+      />
+    );
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EditRecipeForm);

@@ -17,3 +17,16 @@ export const recipesArray = ({ recipes }) => {
 export const selectRecipeAuthor = ( state, recipe ) => {
   return recipe ? state.entities.users[recipe.author_id] : null;
 };
+
+export const simpleIngredientsArray = ({ ingredients }) => {
+  let ingredientIds = Object.keys(ingredients);
+  return ingredientIds.map( id => ingredients[id].ingredient );
+};
+
+export const simpleInstructionsArray = ({ instructions }) => {
+  let instructionIds = Object.keys(instructions);
+  let instructionObjsUnsorted = instructionIds.map( id => instructions[id]);
+  let instructionObjsSorted =
+    instructionObjsUnsorted.sort( (a, b) => a.step_number - b.step_number );
+  return instructionObjsSorted.map( obj => obj.instruction );
+};
