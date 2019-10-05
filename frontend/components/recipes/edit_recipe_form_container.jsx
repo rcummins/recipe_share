@@ -56,6 +56,7 @@ class EditRecipeForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      author_id: null,
       formData: {
         id: '',
         title: '',
@@ -70,6 +71,7 @@ class EditRecipeForm extends React.Component {
     this.props.fetchRecipeDetail(this.props.match.params.recipeId).then(
       recipeAction => {
         this.setState({
+          author_id: recipeAction.payload.recipe.author_id,
           formData: {
             id: recipeAction.payload.recipe.id,
             title: recipeAction.payload.recipe.title,
@@ -93,7 +95,7 @@ class EditRecipeForm extends React.Component {
       clearRecipeErrors
     } = this.props;
 
-    return(
+    const display = ( currentUser.id === this.state.author_id ) ? (
       <RecipeForm
         formData={this.state.formData}
         formTitle={'Edit your recipe'}
@@ -106,7 +108,13 @@ class EditRecipeForm extends React.Component {
         instructionAction={instructionAction}
         clearRecipeErrors={clearRecipeErrors}
       />
-    );
+    ) : (
+      <div className="action-not-allowed">
+        <p>Sorry, you can't edit this recipe because you didn't create it.</p>
+      </div>
+    )
+
+    return( display );
   }
 }
 
