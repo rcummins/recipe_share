@@ -19,11 +19,19 @@ export const selectRecipeAuthor = ( state, recipe ) => {
 };
 
 export const simpleIngredientsArray = ({ ingredients }) => {
+  if (!ingredients) {
+    return [''];
+  }
+
   let ingredientIds = Object.keys(ingredients);
   return ingredientIds.map( id => ingredients[id].ingredient );
 };
 
 export const simpleInstructionsArray = ({ instructions }) => {
+  if (!instructions) {
+    return [''];
+  }
+
   let instructionIds = Object.keys(instructions);
   let instructionObjsUnsorted = instructionIds.map( id => instructions[id]);
   let instructionObjsSorted =
