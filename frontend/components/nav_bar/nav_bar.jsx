@@ -1,7 +1,13 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
-export default ({ currentUser, logout, clearSessionErrors }) => {
+export default (props) => {
+  const {
+    currentUser,
+    logout,
+    clearSessionErrors,
+    clearRecipeErrors } = props;
+
   const displaySessionInfo = currentUser ? (
     <div className="nav-session-info">
 
@@ -9,7 +15,7 @@ export default ({ currentUser, logout, clearSessionErrors }) => {
 
       <button
         className="button-nav button-logout"
-        onClick={logout}>Log out</button>
+        onClick={() => {logout(); clearRecipeErrors(); }}>Log out</button>
 
     </div>
   ) : (
@@ -35,11 +41,13 @@ export default ({ currentUser, logout, clearSessionErrors }) => {
         className="nav-link"
         activeClassName="active"
         exact={true}
+        onClick={clearRecipeErrors}
         to="/" >All Recipes</NavLink>
 
       <NavLink
         className="nav-link"
         activeClassName="active"
+        onClick={clearRecipeErrors}
         to="/myrecipes" >My Recipes</NavLink>
 
     </div>
@@ -58,7 +66,10 @@ export default ({ currentUser, logout, clearSessionErrors }) => {
   return(
     <header>
 
-      <Link className="logo" to="/">Recipe Share</Link>
+      <Link
+        className="logo"
+        to="/"
+        onClick={clearRecipeErrors}>Recipe Share</Link>
 
       { displayNavLinks}
 
