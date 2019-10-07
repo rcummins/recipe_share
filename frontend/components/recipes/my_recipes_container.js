@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { fetchMyRecipes } from '../../actions/recipe_actions';
+import { fetchMyRecipes, deleteRecipe } from '../../actions/recipe_actions';
 import { recipesArray } from '../../reducers/selectors';
 import MyRecipes from './my_recipes';
 
@@ -10,7 +10,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchMyRecipes: authorId => dispatch(fetchMyRecipes(authorId))
+  fetchMyRecipes: authorId => dispatch(fetchMyRecipes(authorId)),
+  deleteRecipe: recipe => dispatch(deleteRecipe(recipe))
 });
 
 export default connect(

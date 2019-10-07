@@ -35,6 +35,10 @@ button {
   background-color: #e32695;
 }
 
+.button-delete-recipe {
+  background-color: #e32695;
+}
+
 .button-nav, .button-logout {
   margin: 0px 10px;
   background-color: white;
@@ -161,6 +165,10 @@ header {
 
 .recipe-detail .recipe-author-options {
   margin-top: 20px;
+}
+
+.recipe-detail .recipe-author-options .button-delete-recipe {
+  margin-left: 20px;
 }
 
 .recipe-form .form-input {

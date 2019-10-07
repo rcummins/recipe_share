@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 class RecipeDetail extends React.Component {
   constructor(props) {
     super(props);
+
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -16,6 +18,13 @@ class RecipeDetail extends React.Component {
       const { recipeId } = this.props.match.params;
       this.props.fetchRecipeDetail(recipeId);
     }
+  }
+
+  handleDelete(e) {
+    e.preventDefault();
+    this.props.deleteRecipe({ recipe: this.props.recipe }).then(
+      () => this.props.history.push("/myrecipes")
+    );
   }
 
   render() {
@@ -32,6 +41,10 @@ class RecipeDetail extends React.Component {
           <Link
             className="link-edit-recipe"
             to={`/recipes/${recipe.id}/edit`}>Edit recipe</Link>
+
+          <button
+            className="button-delete-recipe"
+            onClick={this.handleDelete}>Delete recipe</button>
         </div>
       )
     }
