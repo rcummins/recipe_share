@@ -25,17 +25,39 @@ muffins = Recipe.create({
 })
 
 Ingredient.create([
-  {recipe_id: muffins.id, ingredient: '3.5 cups wheat bran'},
-  {recipe_id: muffins.id, ingredient: '1/3 cup whole wheat flour'},
-  {recipe_id: muffins.id, ingredient: '2 teaspoons ground cinnamon'},
-  {recipe_id: muffins.id, ingredient: '1 teaspoon baking powder'},
-  {recipe_id: muffins.id, ingredient: '1/8 teaspoon salt'},
-  {recipe_id: muffins.id, ingredient: '1 cup unsweetened applesauce'},
-  {recipe_id: muffins.id, ingredient: '1 cup apple cider'},
-  {recipe_id: muffins.id, ingredient: '1 apple, peeled, cored, and diced'},
-  {recipe_id: muffins.id, ingredient: '64 frozen cranberries'},
-  {recipe_id: muffins.id, ingredient: '16 paper muffin cup liners'},
-  {recipe_id: muffins.id, ingredient: 'Non-stick cooking spray'}
+  {recipe_id: muffins.id,
+    item_number: 1,
+    ingredient: '3.5 cups wheat bran'},
+  {recipe_id: muffins.id,
+    item_number: 2,
+    ingredient: '1/3 cup whole wheat flour'},
+  {recipe_id: muffins.id,
+    item_number: 3,
+    ingredient: '2 teaspoons ground cinnamon'},
+  {recipe_id: muffins.id,
+    item_number: 4,
+    ingredient: '1 teaspoon baking powder'},
+  {recipe_id: muffins.id,
+    item_number: 5,
+    ingredient: '1/8 teaspoon salt'},
+  {recipe_id: muffins.id,
+    item_number: 6,
+    ingredient: '1 cup unsweetened applesauce'},
+  {recipe_id: muffins.id,
+    item_number: 7,
+    ingredient: '1 cup apple cider'},
+  {recipe_id: muffins.id,
+    item_number: 8,
+    ingredient: '1 apple, peeled, cored, and diced'},
+  {recipe_id: muffins.id,
+    item_number: 9,
+    ingredient: '64 frozen cranberries'},
+  {recipe_id: muffins.id,
+    item_number: 10,
+    ingredient: '16 paper muffin cup liners'},
+  {recipe_id: muffins.id,
+    item_number: 11,
+    ingredient: 'Non-stick cooking spray'}
 ])
 
 Instruction.create([
@@ -63,9 +85,15 @@ cranberry_sauce = Recipe.create({
 })
 
 Ingredient.create([
-  {recipe_id: cranberry_sauce.id, ingredient: '1 cup sugar'},
-  {recipe_id: cranberry_sauce.id, ingredient: '1 cup water'},
-  {recipe_id: cranberry_sauce.id, ingredient: '12 ounces fresh cranberries'}
+  {recipe_id: cranberry_sauce.id,
+    item_number: 1,
+    ingredient: '1 cup sugar'},
+  {recipe_id: cranberry_sauce.id,
+    item_number: 2,
+    ingredient: '1 cup water'},
+  {recipe_id: cranberry_sauce.id,
+    item_number: 3,
+    ingredient: '12 ounces fresh cranberries'}
 ])
 
 Instruction.create([
@@ -93,21 +121,51 @@ banana_cake = Recipe.create({
 })
 
 Ingredient.create([
-  {recipe_id: banana_cake.id, ingredient: '3 bananas'},
-  {recipe_id: banana_cake.id, ingredient: '2 cups sifted all purpose flour'},
-  {recipe_id: banana_cake.id, ingredient: '1/2 teaspoon baking powder'},
-  {recipe_id: banana_cake.id, ingredient: '3/4 teaspoon baking soda'},
-  {recipe_id: banana_cake.id, ingredient: '1/2 teaspoon salt'},
-  {recipe_id: banana_cake.id, ingredient: '1/2 cup shortening'},
-  {recipe_id: banana_cake.id, ingredient: '1.5 cups sugar'},
-  {recipe_id: banana_cake.id, ingredient: '2 eggs'},
-  {recipe_id: banana_cake.id, ingredient: '1 teaspoon vanilla'},
-  {recipe_id: banana_cake.id, ingredient: '1 teaspoon vinegar'},
-  {recipe_id: banana_cake.id, ingredient: '1/4 cup milk'},
-  {recipe_id: banana_cake.id, ingredient: '1/4 cup melted margarine'},
-  {recipe_id: banana_cake.id, ingredient: '3 cups powdered sugar'},
-  {recipe_id: banana_cake.id, ingredient: '1 egg yolk'},
-  {recipe_id: banana_cake.id, ingredient: '2 tablespoons lemon juice'}
+  {recipe_id: banana_cake.id,
+    item_number: 1,
+    ingredient: '3 bananas'},
+  {recipe_id: banana_cake.id,
+    item_number: 2,
+    ingredient: '2 cups sifted all purpose flour'},
+  {recipe_id: banana_cake.id,
+    item_number: 3,
+    ingredient: '1/2 teaspoon baking powder'},
+  {recipe_id: banana_cake.id,
+    item_number: 4,
+    ingredient: '3/4 teaspoon baking soda'},
+  {recipe_id: banana_cake.id,
+    item_number: 5,
+    ingredient: '1/2 teaspoon salt'},
+  {recipe_id: banana_cake.id,
+    item_number: 6,
+    ingredient: '1/2 cup shortening'},
+  {recipe_id: banana_cake.id,
+    item_number: 7,
+    ingredient: '1.5 cups sugar'},
+  {recipe_id: banana_cake.id,
+    item_number: 8,
+    ingredient: '2 eggs'},
+  {recipe_id: banana_cake.id,
+    item_number: 9,
+    ingredient: '1 teaspoon vanilla'},
+  {recipe_id: banana_cake.id,
+    item_number: 10,
+    ingredient: '1 teaspoon vinegar'},
+  {recipe_id: banana_cake.id,
+    item_number: 11,
+    ingredient: '1/4 cup milk'},
+  {recipe_id: banana_cake.id,
+    item_number: 12,
+    ingredient: '1/4 cup melted margarine'},
+  {recipe_id: banana_cake.id,
+    item_number: 13,
+    ingredient: '3 cups powdered sugar'},
+  {recipe_id: banana_cake.id,
+    item_number: 14,
+    ingredient: '1 egg yolk'},
+  {recipe_id: banana_cake.id,
+    item_number: 15,
+    ingredient: '2 tablespoons lemon juice'}
 ])
 
 Instruction.create([

@@ -1,6 +1,7 @@
 export const ingredientsArray = ({ ingredients }) => {
   let ingredientIds = Object.keys(ingredients);
-  return ingredientIds.map( id => ingredients[id] );
+  let ingredientsUnsorted = ingredientIds.map( id => ingredients[id] );
+  return ingredientsUnsorted.sort( (a, b) => a.item_number - b.item_number );
 };
 
 export const instructionsArray = ({ instructions }) => {
@@ -24,7 +25,10 @@ export const simpleIngredientsArray = ({ ingredients }) => {
   }
 
   let ingredientIds = Object.keys(ingredients);
-  return ingredientIds.map( id => ingredients[id].ingredient );
+  let ingredientObjsUnsorted = ingredientIds.map( id => ingredients[id]);
+  let ingredientObjsSorted =
+    ingredientObjsUnsorted.sort( (a, b) => a.item_number - b.item_number );
+  return ingredientObjsSorted.map( obj => obj.ingredient );
 };
 
 export const simpleInstructionsArray = ({ instructions }) => {

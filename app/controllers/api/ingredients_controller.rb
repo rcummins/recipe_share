@@ -20,6 +20,6 @@ class Api::IngredientsController < ApplicationController
   private
 
   def ingredient_params
-    params.require(:ingredient).permit(:recipe_id, :ingredient)
+    params.require(:ingredient).permit(:recipe_id, :item_number, :ingredient)
   end
 end

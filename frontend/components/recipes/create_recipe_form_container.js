@@ -24,11 +24,12 @@ const mapDispatchToProps = dispatch => ({
   submitAction2: (ingredients, instructions, recipeAction) => {
 
     // loop over ingredients to create each ingredient
-    ingredients.forEach(ingredient => {
+    ingredients.forEach((ingredient, index) => {
 
       let formIngredient = {
         ingredient: {
           recipe_id: recipeAction.recipe.id,
+          item_number: index + 1,
           ingredient: ingredient
         }
       };
