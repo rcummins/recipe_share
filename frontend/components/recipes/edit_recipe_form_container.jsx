@@ -21,34 +21,53 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchRecipeDetail: recipeId => dispatch(fetchRecipeDetail(recipeId)),
-  submitAction: formRecipe => {
+  submitAction1: formRecipe => dispatch(updateRecipe(formRecipe)),
+  submitAction2: (ingredients, instructions, updateAction) => {
 
     /* fetch and then delete all ingredients and instructions before creating
     new ingredients and instructions based on the edit recipe form */
-    dispatch(fetchRecipeDetail(formRecipe.recipe.id)).then(
-      recipeAction => {
-        const ingredientIds = Object.keys(recipeAction.payload.ingredients);
+    dispatch(fetchRecipeDetail(updateAction.recipe.id)).then(
+      fetchAction => {
+        const ingredientIds = Object.keys(fetchAction.payload.ingredients);
         ingredientIds.forEach( id => (
           dispatch(deleteIngredient({ ingredient: { id } }))
         ));
 
-        const instructionIds = Object.keys(recipeAction.payload.instructions);
+        const instructionIds = Object.keys(fetchAction.payload.instructions);
         instructionIds.forEach( id => (
           dispatch(deleteInstruction({ instruction: { id }}))
         ));
+
+        /* loop over ingredients to create each ingredient */
+        ingredients.forEach(ingredient => {
+
+          let formIngredient = {
+            ingredient: {
+              recipe_id: updateAction.recipe.id,
+              ingredient: ingredient
+            }
+          };
+
+          dispatch(createIngredient(formIngredient));
+        });
+
+        /* loop over instructions to create each instruction */
+        instructions.forEach((instruction, index) => {
+
+          let formInstruction = {
+            instruction: {
+              recipe_id: updateAction.recipe.id,
+              step_number: index + 1,
+              instruction: instruction
+            }
+          };
+
+          dispatch(createInstruction(formInstruction));
+        });
       }
     );
-
-    /* update recipe attributes based on the edit recipe form */
-    return dispatch(updateRecipe(formRecipe));
   },
-  ingredientAction: formIngredient => (
-    dispatch(createIngredient(formIngredient))
-  ),
-  instructionAction: formInstruction => (
-    dispatch(createInstruction(formInstruction))
-  ),
+  fetchRecipeDetail: recipeId => dispatch(fetchRecipeDetail(recipeId)),
   clearRecipeErrors: () => dispatch(clearRecipeErrors())
 });
 
@@ -101,9 +120,8 @@ class EditRecipeForm extends React.Component {
       history,
       currentUser,
       recipeErrors,
-      submitAction,
-      ingredientAction,
-      instructionAction,
+      submitAction1,
+      submitAction2,
       clearRecipeErrors
     } = this.props;
 
@@ -115,9 +133,8 @@ class EditRecipeForm extends React.Component {
         history={history}
         currentUser={currentUser}
         recipeErrors={recipeErrors}
-        submitAction={submitAction}
-        ingredientAction={ingredientAction}
-        instructionAction={instructionAction}
+        submitAction1={submitAction1}
+        submitAction2={submitAction2}
         clearRecipeErrors={clearRecipeErrors}
       />
     ) : (

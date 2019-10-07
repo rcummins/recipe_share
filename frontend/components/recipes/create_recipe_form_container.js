@@ -20,13 +20,36 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  submitAction: formRecipe => dispatch(createRecipe(formRecipe)),
-  ingredientAction: formIngredient => (
-    dispatch(createIngredient(formIngredient))
-  ),
-  instructionAction: formInstruction => (
-    dispatch(createInstruction(formInstruction))
-  ),
+  submitAction1: formRecipe => dispatch(createRecipe(formRecipe)),
+  submitAction2: (ingredients, instructions, recipeAction) => {
+
+    // loop over ingredients to create each ingredient
+    ingredients.forEach(ingredient => {
+
+      let formIngredient = {
+        ingredient: {
+          recipe_id: recipeAction.recipe.id,
+          ingredient: ingredient
+        }
+      };
+
+      dispatch(createIngredient(formIngredient));
+    });
+
+    // loop over instructions to create each instruction
+    instructions.forEach((instruction, index) => {
+
+      let formInstruction = {
+        instruction: {
+          recipe_id: recipeAction.recipe.id,
+          step_number: index + 1,
+          instruction: instruction
+        }
+      };
+
+      dispatch(createInstruction(formInstruction));
+    });
+  },
   clearRecipeErrors: () => dispatch(clearRecipeErrors())
 });
 

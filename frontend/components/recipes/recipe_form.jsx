@@ -61,39 +61,15 @@ class RecipeForm extends React.Component {
       }
     };
 
-    this.props.submitAction(formRecipe).then(
+    this.props.submitAction1(formRecipe).then(
       recipeAction => {
 
         this.props.clearRecipeErrors();
 
-        // loop over ingredients to dispatch an action for each ingredient
-        this.state.ingredients.forEach( ingredient => {
-
-          let formIngredient = {
-            ingredient: {
-              recipe_id: recipeAction.recipe.id,
-              ingredient: ingredient
-            }
-          };
-
-          this.props.ingredientAction(formIngredient);
-
-        });
-
-        // loop over instructions to dispatch an action for each instruction
-        this.state.instructions.forEach( (instruction, index) => {
-
-          let formInstruction = {
-            instruction: {
-              recipe_id: recipeAction.recipe.id,
-              step_number: index + 1,
-              instruction: instruction
-            }
-          };
-
-          this.props.instructionAction(formInstruction);
-
-        });
+        this.props.submitAction2(
+          this.state.ingredients,
+          this.state.instructions,
+          recipeAction);
 
         // redirect to a list of user's authored recipes
         this.props.history.push("/myrecipes");
