@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import RatingFormContainer from '../ratings/rating_form_container';
+
 class RecipeDetail extends React.Component {
   constructor(props) {
     super(props);
@@ -86,6 +88,8 @@ class RecipeDetail extends React.Component {
         </section>
 
         { displayAuthorOptions }
+
+        <RatingFormContainer recipeId={recipe.id} />
       </div>
     );
   }
