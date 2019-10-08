@@ -1,4 +1,8 @@
 class Rating < ApplicationRecord
+  validates :recipe_id, uniqueness: {
+    scope: :author_id,
+    message: 'has already been rated by this user'
+  }
   validates :taste_rating, :effort_rating,
     presence: true,
     numericality: {
