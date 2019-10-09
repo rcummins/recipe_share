@@ -7,9 +7,11 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+
     <link
       href="https://fonts.googleapis.com/css?family=Delius|M+PLUS+Rounded+1c:400,700&display=swap"
       rel="stylesheet">
+
     <% if current_user %>
       <script>
         window.currentUser = {
@@ -18,6 +20,13 @@
         };
       </script>
     <% end %>
+
+    <script type="text/javascript">
+      window.grayStarURL = "<%= image_url('rating_star_gray.png') %>";
+      window.yellowStarURL = "<%= image_url('rating_star_yellow.png') %>";
+      window.grayKnifeURL = "<%= image_url('rating_knife_gray.png') %>";
+      window.yellowKnifeURL = "<%= image_url('rating_knife_yellow.png') %>";
+    </script>
   </head>
 
   <body>

@@ -4,16 +4,53 @@ class RatingForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tasteRating: '',
-      effortRating: ''
+      tasteRating: {
+        temp: null,
+        clicked: null
+      },
+      effortRating: {
+        temp: null,
+        clicked: null
+      }
     };
 
-    this.handleInput = this.handleInput.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleMouseOut = this.handleMouseOut.bind(this);
+    this.handleMouseOver = this.handleMouseOver.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleInput(e) {
-    this.setState({ [e.target.id]: e.target.value })
+  handleClick(index) {
+    return e => {
+      this.setState({
+        [e.target.id]: {
+          temp: index,
+          clicked: index
+        }
+      });
+    };
+  }
+
+  handleMouseOut(e) {
+    let clickedRating = this.state[e.target.id].clicked;
+    this.setState({
+      [e.target.id]: {
+        temp: clickedRating,
+        clicked: clickedRating
+      }
+    });
+  }
+
+  handleMouseOver(index) {
+    return e => {
+      let clickedRating = this.state[e.target.id].clicked;
+      this.setState({
+        [e.target.id]: {
+          temp: index,
+          clicked: clickedRating
+        }
+      });
+    };
   }
 
   handleSubmit(e) {
@@ -23,8 +60,8 @@ class RatingForm extends React.Component {
       rating: {
         recipe_id: this.props.recipeId,
         author_id: this.props.currentUser.id,
-        taste_rating: this.state.tasteRating,
-        effort_rating: this.state.effortRating
+        taste_rating: this.state.tasteRating.clicked,
+        effort_rating: this.state.effortRating.clicked
       }
     };
 
@@ -32,33 +69,63 @@ class RatingForm extends React.Component {
   }
 
   render() {
+    const tasteRatingScale = ['Gross', 'Okay', 'Good', 'Very good', 'Amazing!'];
+    const tasteRatingInput = (
+      <div className="form-input-rating">
+        <label>Taste:</label>
+        <div className="rating-icons">
+          {
+            [1, 2, 3, 4, 5].map( index => (
+              <img
+              key={index}
+              src={this.state.tasteRating.temp >= index ?
+                window.yellowStarURL : window.grayStarURL}
+              id="tasteRating"
+              onClick={this.handleClick(index)}
+              onMouseOver={this.handleMouseOver(index)}
+              onMouseOut={this.handleMouseOut} />
+            ))
+          }
+        </div>
+        <p>{tasteRatingScale[this.state.tasteRating.temp - 1]}</p>
+      </div>
+    );
+
+    const effortRatingScale = [
+      'Quick & easy',
+      'Somewhat easy',
+      'Medium',
+      'A lot of work',
+      'So much work!'
+    ];
+    const effortRatingInput = (
+      <div className="form-input-rating">
+        <label>Effort:</label>
+        <div className="rating-icons">
+          {
+            [1, 2, 3, 4, 5].map( index => (
+              <img
+                key={index}
+                src={this.state.effortRating.temp >= index ?
+                  window.yellowKnifeURL : window.grayKnifeURL}
+                id="effortRating"
+                onClick={this.handleClick(index)}
+                onMouseOver={this.handleMouseOver(index)}
+                onMouseOut={this.handleMouseOut} />
+            ))
+          }
+        </div>
+        <p>{effortRatingScale[this.state.effortRating.temp -1]}</p>
+      </div>
+    );
+
     return(
       <div className="rating-form">
         <h2>Rate this recipe</h2>
 
-        <div className="form-input-taste">
-          <label htmlFor="tasteRating">Taste:</label>
-          <input
-            type="number"
-            id="tasteRating"
-            min="1"
-            max="5"
-            onChange={this.handleInput}
-            value={this.state.tasteRating}
-          />
-        </div>
+        { tasteRatingInput }
 
-        <div className="form-input-effort">
-          <label htmlFor="effortRating">Effort:</label>
-          <input
-            type="number"
-            id="effortRating"
-            min="1"
-            max="5"
-            onChange={this.handleInput}
-            value={this.state.effortRating}
-          />
-        </div>
+        { effortRatingInput }
 
         <button
           className="button-submit-form"

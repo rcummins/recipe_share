@@ -137,6 +137,37 @@ header {
   align-items: center;
 }
 
+.rating-form {
+  max-width: 450px;
+  padding: 0 20px 20px;
+  margin: 30px 0;
+  border: 2px solid #2695e3;
+  border-radius: 10px;
+}
+
+.rating-form .form-input-rating {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.rating-form label {
+  width: 70px;
+}
+
+.rating-form .rating-icons {
+  margin-right: 20px;
+}
+
+.rating-form img {
+  width: 40px;
+}
+
+.rating-form .button-submit-form {
+  margin-top: 10px;
+  background-color: #2695e3;
+}
+
 .recipe-detail, .recipe-form {
   max-width: 700px;
   margin: 0 auto;
