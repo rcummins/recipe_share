@@ -51,6 +51,11 @@ class RecipeDetail extends React.Component {
       )
     }
 
+    let displayRatingForm;
+    if (this.props.currentUser && this.props.currentUser.id !== author.id) {
+      displayRatingForm = <RatingFormContainer recipeId={recipe.id} />;
+    }
+
     return(
       <div className="recipe-detail">
 
@@ -89,7 +94,7 @@ class RecipeDetail extends React.Component {
 
         { displayAuthorOptions }
 
-        <RatingFormContainer recipeId={recipe.id} />
+        { displayRatingForm }
       </div>
     );
   }
