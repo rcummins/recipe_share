@@ -10,6 +10,11 @@ export const instructionsArray = ({ instructions }) => {
   return instructionsUnsorted.sort( (a, b) => a.step_number - b.step_number );
 };
 
+export const ratingAuthorIds = ({ ratings }) => {
+  let ratingIds = Object.keys(ratings);
+  return ratingIds.map( id => ratings[id].author_id );
+};
+
 export const recipesArray = ({ recipes }) => {
   let recipeIds = Object.keys(recipes);
   return recipeIds.map( id => recipes[id] );

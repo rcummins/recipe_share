@@ -23,3 +23,11 @@ json.author do
     json.partial! 'api/users/user', user: @recipe.author
   end
 end
+
+json.ratings do
+  @recipe.ratings.each do |rating|
+    json.set! rating.id do
+      json.partial! 'api/ratings/rating', rating: rating
+    end
+  end
+end

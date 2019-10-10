@@ -53,7 +53,18 @@ class RecipeDetail extends React.Component {
 
     let displayRatingForm;
     if (this.props.currentUser && this.props.currentUser.id !== author.id) {
-      displayRatingForm = <RatingFormContainer recipeId={recipe.id} />;
+      if (this.props.ratingAuthorIds.includes(this.props.currentUser.id)) {
+        displayRatingForm = (
+          <div className="rating-form">
+            <div className="form-input-rating">
+              <span className="check-mark">{'\u2714'}</span>
+              <p>You have submitted a rating for this recipe</p>
+            </div>
+          </div>
+        );
+      } else {
+        displayRatingForm = <RatingFormContainer recipeId={recipe.id} />;
+      }
     }
 
     return(

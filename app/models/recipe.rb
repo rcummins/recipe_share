@@ -7,6 +7,7 @@ class Recipe < ApplicationRecord
   belongs_to :author, foreign_key: :author_id, class_name: :User
   has_many :ingredients, dependent: :destroy
   has_many :instructions, dependent: :destroy
+  has_many :ratings, dependent: :destroy
 
   def update_average_ratings
     self.average_taste_rating =

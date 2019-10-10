@@ -4,7 +4,8 @@ import { fetchRecipeDetail, deleteRecipe } from '../../actions/recipe_actions';
 import {
   ingredientsArray,
   instructionsArray,
-  selectRecipeAuthor } from '../../reducers/selectors';
+  selectRecipeAuthor,
+  ratingAuthorIds } from '../../reducers/selectors';
 import RecipeDetail from './recipe_detail';
 
 const mapStateToProps = (state, ownProps) => {
@@ -15,6 +16,7 @@ const mapStateToProps = (state, ownProps) => {
     author: selectRecipeAuthor(state, recipe),
     ingredients: ingredientsArray(state.entities),
     instructions: instructionsArray(state.entities),
+    ratingAuthorIds: ratingAuthorIds(state.entities),
     currentUser: state.session.currentUser
   };
 };
