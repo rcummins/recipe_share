@@ -8,6 +8,7 @@ class Recipe < ApplicationRecord
   has_many :ingredients, dependent: :destroy
   has_many :instructions, dependent: :destroy
   has_many :ratings, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   def update_average_ratings
     self.average_taste_rating =
