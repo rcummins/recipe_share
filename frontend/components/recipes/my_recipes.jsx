@@ -25,7 +25,7 @@ class MyRecipes extends React.Component {
   }
 
   render() {
-    const { sortedRecipesArray } = this.props;
+    const { sortedRecipesArray, sortBy } = this.props;
 
     const display = sortedRecipesArray.length == 0 ? (
       <div className="recipe-list-empty">
@@ -106,7 +106,7 @@ class MyRecipes extends React.Component {
             <label htmlFor="sort-by-select">Sort recipes by:</label>
             <select
               id="sort-by-select"
-              defaultValue="TASTE_DESC"
+              defaultValue={sortBy}
               onChange={this.handleChange}>
               <option value="TASTE_ASC">Taste rating - low to high</option>
               <option value="TASTE_DESC">Taste rating - high to low</option>

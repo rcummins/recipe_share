@@ -6,7 +6,8 @@ import { sortedRecipesArray } from '../../reducers/selectors';
 import AllRecipes from './all_recipes';
 
 const mapStateToProps = state => ({
-  sortedRecipesArray: sortedRecipesArray(state)
+  sortedRecipesArray: sortedRecipesArray(state),
+  sortBy: state.ui.sortBy
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -7,7 +7,8 @@ import MyRecipes from './my_recipes';
 
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
-  sortedRecipesArray: sortedRecipesArray(state)
+  sortedRecipesArray: sortedRecipesArray(state),
+  sortBy: state.ui.sortBy
 });
 
 const mapDispatchToProps = dispatch => ({
