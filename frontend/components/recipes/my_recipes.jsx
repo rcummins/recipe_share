@@ -6,10 +6,15 @@ class MyRecipes extends React.Component {
     super(props);
 
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchMyRecipes(this.props.currentUser.id);
+  }
+
+  handleChange(e) {
+    this.props.receiveSortByMethod(e.target.value);
   }
 
   handleDelete(recipe) {
@@ -20,9 +25,9 @@ class MyRecipes extends React.Component {
   }
 
   render() {
-    const { recipes } = this.props;
+    const { sortedRecipesArray } = this.props;
 
-    const display = recipes.length == 0 ? (
+    const display = sortedRecipesArray.length == 0 ? (
       <div className="recipe-list-empty">
         <p>You have not created any recipes yet!</p>
       </div>
@@ -40,7 +45,7 @@ class MyRecipes extends React.Component {
         </thead>
 
         <tbody>
-          {recipes.map((recipe, index) => (
+          {sortedRecipesArray.map((recipe, index) => (
             <tr key={index}>
               <td className="col-recipe">
                 <Link
@@ -93,12 +98,30 @@ class MyRecipes extends React.Component {
     )
 
     return(
-      <div className="recipe-list">
+      <div className="recipe-list-and-sort-by">
+
+        <div className="recipe-list">
+
+          <form className="sort-by">
+            <label htmlFor="sort-by-select">Sort recipes by:</label>
+            <select
+              id="sort-by-select"
+              defaultValue="TASTE_DESC"
+              onChange={this.handleChange}>
+              <option value="TASTE_ASC">Taste rating - low to high</option>
+              <option value="TASTE_DESC">Taste rating - high to low</option>
+              <option value="EFFORT_ASC">Effort rating - low to high</option>
+              <option value="EFFORT_DESC">Effort rating - high to low</option>
+            </select>
+          </form>
+
+          { display }
+        </div>
+
         <Link
           className="link-add-recipe"
           to="/recipes/new">Add a new recipe</Link>
 
-        { display }
       </div>
     )
   }

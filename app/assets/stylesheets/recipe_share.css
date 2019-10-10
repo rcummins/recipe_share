@@ -94,7 +94,7 @@ header {
 }
 
 .link-add-recipe {
-  margin-top: 20px;
+  margin: 10px 0 40px;
   background-color: #2695e3;
   color: white;
 }
@@ -246,11 +246,17 @@ header {
   margin-top: 50px;
 }
 
+.recipe-list-and-sort-by {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .recipe-list {
   margin: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .recipe-list table {
@@ -322,4 +328,8 @@ header {
 
 .session-form input {
   width: 140px;
+}
+
+.sort-by label {
+  margin-right: 10px;
 }
