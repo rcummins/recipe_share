@@ -26,6 +26,10 @@ button {
   color: white;
 }
 
+.button-add-favorite {
+  background-color: #a71622;
+}
+
 .button-add-input {
   margin-top: 10px;
   background-color: #2695e3;
@@ -182,6 +186,12 @@ header {
   max-width: 700px;
   margin: 0 auto;
   padding-left: 20px;
+}
+
+.recipe-detail .title-and-favorite-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .recipe-detail li {
