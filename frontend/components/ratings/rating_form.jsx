@@ -65,7 +65,9 @@ class RatingForm extends React.Component {
       }
     };
 
-    this.props.createRating(formRating);
+    this.props.createRating(formRating).then(
+      () => this.props.clearRatingErrors()
+    );
   }
 
   render() {
@@ -119,9 +121,27 @@ class RatingForm extends React.Component {
       </div>
     );
 
+    const { ratingErrors } = this.props;
+
+    let ratingErrorMessage;
+    if (ratingErrors.length > 0) {
+      ratingErrorMessage = (
+        <div className="error-message">
+          <p>Please fix the following issue(s):</p>
+          <ul>
+            { ratingErrors.map( (error, index) => (
+              <li key={index}>{error}</li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
+
     return(
       <div className="rating-form">
         <h2>Rate this recipe</h2>
+
+        { ratingErrorMessage }
 
         { tasteRatingInput }
 

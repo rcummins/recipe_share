@@ -6,7 +6,8 @@ export default (props) => {
     currentUser,
     logout,
     clearSessionErrors,
-    clearRecipeErrors } = props;
+    clearRecipeErrors,
+    clearRatingErrors } = props;
 
   const displaySessionInfo = currentUser ? (
     <div className="nav-session-info">
@@ -15,7 +16,11 @@ export default (props) => {
 
       <button
         className="button-nav button-logout"
-        onClick={() => {logout(); clearRecipeErrors(); }}>Log out</button>
+        onClick={() => {
+          logout();
+          clearRecipeErrors();
+          clearRatingErrors();
+        }}>Log out</button>
 
     </div>
   ) : (
@@ -41,13 +46,13 @@ export default (props) => {
         className="nav-link"
         activeClassName="active"
         exact={true}
-        onClick={clearRecipeErrors}
+        onClick={() => {clearRecipeErrors(); clearRatingErrors(); }}
         to="/" >All Recipes</NavLink>
 
       <NavLink
         className="nav-link"
         activeClassName="active"
-        onClick={clearRecipeErrors}
+        onClick={() => { clearRecipeErrors(); clearRatingErrors(); }}
         to="/myrecipes" >My Recipes</NavLink>
 
     </div>
@@ -69,7 +74,10 @@ export default (props) => {
       <Link
         className="logo"
         to="/"
-        onClick={clearRecipeErrors}>Recipe Share</Link>
+        onClick={() => {
+          clearRecipeErrors();
+          clearRatingErrors();
+        }}>Recipe Share</Link>
 
       { displayNavLinks}
 
