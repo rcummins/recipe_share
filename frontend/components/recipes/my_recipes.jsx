@@ -48,10 +48,32 @@ class MyRecipes extends React.Component {
                   to={`/recipes/${recipe.id}`}>{recipe.title}</Link>
               </td>
               <td className="col-rating">
-                <p>{recipe.average_taste_rating}</p>
+                {
+                  recipe.average_taste_rating == '0.0' ? (
+                    <p>Not rated</p>
+                  ) : (
+                    <div className="rating-number-icon">
+                      <p>{Number
+                        .parseFloat(recipe.average_taste_rating)
+                        .toFixed(1)}</p>
+                      <img src={window.yellowStarURL} />
+                    </div>
+                  )
+                }
               </td>
               <td className="col-rating">
-                <p>{recipe.average_effort_rating}</p>
+                {
+                  recipe.average_effort_rating == '0.0' ? (
+                    <p>Not rated</p>
+                  ) : (
+                    <div className="rating-number-icon">
+                      <p>{Number
+                        .parseFloat(recipe.average_effort_rating)
+                        .toFixed(1)}</p>
+                      <img src={window.yellowKnifeURL} />
+                    </div>
+                  )
+                }
               </td>
               <td>
                 <Link
