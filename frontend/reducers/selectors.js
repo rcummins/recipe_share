@@ -20,6 +20,28 @@ export const recipesArray = ({ recipes }) => {
   return recipeIds.map( id => recipes[id] );
 };
 
+export const sortedRecipesArray = state => {
+  const recipes = state.entities.recipes;
+  const sortBy = state.ui.sortBy;
+
+  const recipeIds = Object.keys(recipes);
+  const unsortedRecipes = recipeIds.map( id => recipes[id] );
+
+  if (sortBy === 'EFFORT_ASC') {
+    return unsortedRecipes.sort(
+      (a, b) => a.average_effort_rating - b.average_effort_rating);
+  } else if (sortBy === 'EFFORT_DESC') {
+    return unsortedRecipes.sort(
+      (a, b) => b.average_effort_rating - a.average_effort_rating);
+  } else if (sortBy === 'TASTE_ASC') {
+    return unsortedRecipes.sort(
+      (a, b) => a.average_taste_rating - b.average_taste_rating);
+  } else {
+    return unsortedRecipes.sort(
+      (a, b) => b.average_taste_rating - a.average_taste_rating);
+  }
+};
+
 export const selectRecipeAuthor = ( state, recipe ) => {
   return recipe ? state.entities.users[recipe.author_id] : null;
 };

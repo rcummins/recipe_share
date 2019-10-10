@@ -11,6 +11,8 @@ class AllRecipes extends React.Component {
   }
 
   render() {
+    const { sortedRecipesArray } = this.props;
+
     return(
       <div className="recipe-list">
         <table>
@@ -24,7 +26,7 @@ class AllRecipes extends React.Component {
           </thead>
 
           <tbody>
-            { this.props.recipes.map( (recipe, index) => (
+            { sortedRecipesArray.map( (recipe, index) => (
               <tr key={index}>
                 <td className="col-recipe">
                   <Link

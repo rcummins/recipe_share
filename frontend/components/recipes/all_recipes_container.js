@@ -1,15 +1,17 @@
 import { connect } from 'react-redux';
 
 import { fetchRecipes } from '../../actions/recipe_actions';
-import { recipesArray } from '../../reducers/selectors';
+import { receiveSortByMethod } from '../../actions/sort_by_actions';
+import { sortedRecipesArray } from '../../reducers/selectors';
 import AllRecipes from './all_recipes';
 
 const mapStateToProps = state => ({
-  recipes: recipesArray(state.entities)
+  sortedRecipesArray: sortedRecipesArray(state)
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchRecipes: () => dispatch(fetchRecipes())
+  fetchRecipes: () => dispatch(fetchRecipes()),
+  receiveSortByMethod: formMethod => dispatch(receiveSortByMethod(formMethod))
 });
 
 export default connect(
