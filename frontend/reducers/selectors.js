@@ -10,13 +10,31 @@ export const currentUserFavorite = state => {
   return favoritesArray.find( fav => fav.user_id === currentUser.id );
 };
 
-export const favoriteRecipesArray = ({ favorites, recipes }) => {
+export const sortedFavoriteRecipesArray = state => {
+  let favorites = state.entities.favorites;
+  let recipes = state.entities.recipes;
+  let sortBy = state.ui.sortBy;
+
   let favoriteIds = Object.keys(favorites);
   let favoritesArray = favoriteIds.map( id => favorites[id] );
-  return favoritesArray.map( favorite =>
+  let unsortedFavoriteRecipes = favoritesArray.map( favorite =>
     Object.assign({},
       recipes[favorite.recipe_id],
       { favorite_id: favorite.id }));
+
+  if (sortBy === 'EFFORT_ASC') {
+    return unsortedFavoriteRecipes.sort(
+      (a, b) => a.average_effort_rating - b.average_effort_rating);
+  } else if (sortBy === 'EFFORT_DESC') {
+    return unsortedFavoriteRecipes.sort(
+      (a, b) => b.average_effort_rating - a.average_effort_rating);
+  } else if (sortBy === 'TASTE_ASC') {
+    return unsortedFavoriteRecipes.sort(
+      (a, b) => a.average_taste_rating - b.average_taste_rating);
+  } else {
+    return unsortedFavoriteRecipes.sort(
+      (a, b) => b.average_taste_rating - a.average_taste_rating);
+  }
 };
 
 export const ingredientsArray = ({ ingredients }) => {
