@@ -173,6 +173,7 @@ header {
 
 .rating-form img {
   width: 40px;
+  cursor: pointer;
 }
 
 .rating-form .button-submit-form {
