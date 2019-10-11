@@ -188,7 +188,7 @@ header {
 
 .recipe-detail, .recipe-form {
   max-width: 700px;
-  margin: 0 auto;
+  margin: 0 auto 20px;;
   padding-left: 20px;
 }
 
@@ -327,6 +327,7 @@ header {
 }
 
 .session-form {
+  margin-bottom: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
