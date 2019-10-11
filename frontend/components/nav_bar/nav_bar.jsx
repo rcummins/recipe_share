@@ -55,6 +55,12 @@ export default (props) => {
         onClick={() => { clearRecipeErrors(); clearRatingErrors(); }}
         to="/myrecipes" >My Recipes</NavLink>
 
+      <NavLink
+        className="nav-link"
+        activeClassName="active"
+        onClick={() => { clearRecipeErrors(); clearRatingErrors(); }}
+        to="/myfavorites" >My Favorites</NavLink>
+
     </div>
   ) : (
     <div className="nav-links">

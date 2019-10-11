@@ -10,6 +10,7 @@ import CreateRecipeFormContainer from './recipes/create_recipe_form_container';
 import EditRecipeFormContainer from './recipes/edit_recipe_form_container';
 import RecipeDetailContainer from './recipes/recipe_detail_container';
 import MyRecipesContainer from './recipes/my_recipes_container';
+import MyFavoritesContainer from './favorites/my_favorites_container';
 
 const App = () => (
   <div className="app">
@@ -31,6 +32,7 @@ const App = () => (
 
     </Switch>
     <ProtectedRoute path="/myrecipes" component={MyRecipesContainer} />
+    <ProtectedRoute path="/myfavorites" component={MyFavoritesContainer} />
   </div>
 );
 

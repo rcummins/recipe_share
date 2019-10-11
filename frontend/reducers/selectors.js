@@ -10,6 +10,15 @@ export const currentUserFavorite = state => {
   return favoritesArray.find( fav => fav.user_id === currentUser.id );
 };
 
+export const favoriteRecipesArray = ({ favorites, recipes }) => {
+  let favoriteIds = Object.keys(favorites);
+  let favoritesArray = favoriteIds.map( id => favorites[id] );
+  return favoritesArray.map( favorite =>
+    Object.assign({},
+      recipes[favorite.recipe_id],
+      { favorite_id: favorite.id }));
+};
+
 export const ingredientsArray = ({ ingredients }) => {
   let ingredientIds = Object.keys(ingredients);
   let ingredientsUnsorted = ingredientIds.map( id => ingredients[id] );

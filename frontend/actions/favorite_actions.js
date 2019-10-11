@@ -4,9 +4,9 @@ export const RECEIVE_FAVORITES = 'RECEIVE_FAVORITES';
 export const RECEIVE_FAVORITE = 'RECEIVE_FAVORITE';
 export const REMOVE_FAVORITE = 'REMOVE_FAVORITE';
 
-const receiveFavorites = favorites => ({
+const receiveFavorites = payload => ({
   type: RECEIVE_FAVORITES,
-  favorites
+  payload
 });
 
 const receiveFavorite = favorite => ({

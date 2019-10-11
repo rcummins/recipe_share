@@ -14,9 +14,8 @@ const favoritesReducer = ( oldState = {}, action ) => {
   switch(action.type) {
 
     case RECEIVE_FAVORITES:
-      newState = {};
-      action.favorites.forEach( favorite => newState[favorite.id] = favorite );
-      return newState;
+    case RECEIVE_RECIPE_DETAIL:
+      return Object.assign({}, action.payload.favorites);
 
     case RECEIVE_FAVORITE:
       newFavorite = {};
@@ -27,9 +26,6 @@ const favoritesReducer = ( oldState = {}, action ) => {
       newState = Object.assign({}, oldState);
       delete newState[action.favorite.id];
       return newState;
-
-    case RECEIVE_RECIPE_DETAIL:
-      return Object.assign({}, action.payload.favorites);
 
     default:
       return oldState;
