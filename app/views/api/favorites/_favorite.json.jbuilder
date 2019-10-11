@@ -1,1 +1,1 @@
-json.extract! favorite, :recipe_id, :user_id
+json.extract! favorite, :id, :recipe_id, :user_id

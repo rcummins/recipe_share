@@ -6,7 +6,8 @@ import {
   ingredientsArray,
   instructionsArray,
   selectRecipeAuthor,
-  ratingAuthorIds } from '../../reducers/selectors';
+  ratingAuthorIds,
+  currentUserFavorite } from '../../reducers/selectors';
 import RecipeDetail from './recipe_detail';
 
 const mapStateToProps = (state, ownProps) => {
@@ -18,6 +19,7 @@ const mapStateToProps = (state, ownProps) => {
     ingredients: ingredientsArray(state.entities),
     instructions: instructionsArray(state.entities),
     ratingAuthorIds: ratingAuthorIds(state.entities),
+    currentUserFavorite: currentUserFavorite(state),
     currentUser: state.session.currentUser
   };
 };

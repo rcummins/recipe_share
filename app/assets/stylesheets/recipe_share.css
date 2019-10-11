@@ -27,12 +27,16 @@ button {
 }
 
 .button-add-favorite {
-  background-color: #a71622;
+  background-color: #53abe9;
 }
 
 .button-add-input {
   margin-top: 10px;
   background-color: #2695e3;
+}
+
+.button-delete-favorite {
+  background-color: #ec6ab6;
 }
 
 .button-delete-input {

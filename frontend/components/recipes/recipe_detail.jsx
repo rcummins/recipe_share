@@ -32,19 +32,29 @@ class RecipeDetail extends React.Component {
 
   handleToggleFavorite(e) {
     e.preventDefault();
+    const { currentUserFavorite } = this.props;
 
-    let formFavorite = {
-      favorite: {
-        recipe_id: this.props.recipe.id,
-        user_id: this.props.currentUser.id
-      }
-    };
-
-    this.props.createFavorite(formFavorite);
+    if (currentUserFavorite) {
+      let formFavorite = { favorite: { id: currentUserFavorite.id } };
+      this.props.deleteFavorite(formFavorite);
+    } else {
+      let formFavorite = {
+        favorite: {
+          recipe_id: this.props.recipe.id,
+          user_id: this.props.currentUser.id
+        }
+      };
+      this.props.createFavorite(formFavorite);
+    }
   }
 
   render() {
-    const { recipe, ingredients, instructions, author } = this.props;
+    const {
+      recipe,
+      ingredients,
+      instructions,
+      author,
+      currentUserFavorite } = this.props;
 
     if (!recipe || !author) {
       return(<p>Loading...</p>);
@@ -56,8 +66,13 @@ class RecipeDetail extends React.Component {
         <div className="title-and-favorite-button">
           <h3>{recipe.title}</h3>
           <button
-            className="button-add-favorite"
-            onClick={this.handleToggleFavorite}>Add to favorites</button>
+            className={
+              currentUserFavorite ?
+              "button-delete-favorite" : "button-add-favorite"}
+            onClick={this.handleToggleFavorite}
+          >
+            {currentUserFavorite ? 'Remove from favorites' : 'Add to favorites'}
+          </button>
         </div>
       );
     } else {

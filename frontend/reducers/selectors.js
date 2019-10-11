@@ -1,3 +1,15 @@
+export const currentUserFavorite = state => {
+  let favorites = state.entities.favorites;
+  let favoriteIds = Object.keys(favorites);
+  let favoritesArray = favoriteIds.map( id => favorites[id] );
+  let currentUser = state.session.currentUser;
+
+  if (!currentUser) {
+    return null;
+  }
+  return favoritesArray.find( fav => fav.user_id === currentUser.id );
+};
+
 export const ingredientsArray = ({ ingredients }) => {
   let ingredientIds = Object.keys(ingredients);
   let ingredientsUnsorted = ingredientIds.map( id => ingredients[id] );
