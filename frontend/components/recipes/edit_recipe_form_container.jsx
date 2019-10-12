@@ -10,8 +10,8 @@ import {
   deleteInstruction } from '../../actions/instruction_actions';
 import { clearRecipeErrors } from '../../actions/recipe_error_actions';
 import {
-  simpleIngredientsArray,
-  simpleInstructionsArray } from '../../reducers/selectors';
+  ingredientsArraySimple,
+  instructionsArraySimple } from '../../reducers/selectors';
 import RecipeForm from './recipe_form';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -108,8 +108,8 @@ class EditRecipeForm extends React.Component {
             id: recipeAction.payload.recipe.id,
             title: recipeAction.payload.recipe.title,
             servings: recipeAction.payload.recipe.servings,
-            ingredients: simpleIngredientsArray(recipeAction.payload),
-            instructions: simpleInstructionsArray(recipeAction.payload)
+            ingredients: ingredientsArraySimple(recipeAction.payload),
+            instructions: instructionsArraySimple(recipeAction.payload)
           }
         });
       }

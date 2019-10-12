@@ -10,31 +10,11 @@ export const currentUserFavorite = state => {
   return favoritesArray.find( fav => fav.user_id === currentUser.id );
 };
 
-export const sortedFavoriteRecipesArray = state => {
-  let favorites = state.entities.favorites;
-  let recipes = state.entities.recipes;
-  let sortBy = state.ui.sortBy;
-
-  let favoriteIds = Object.keys(favorites);
-  let favoritesArray = favoriteIds.map( id => favorites[id] );
-  let unsortedFavoriteRecipes = favoritesArray.map( favorite =>
-    Object.assign({},
-      recipes[favorite.recipe_id],
-      { favorite_id: favorite.id }));
-
-  if (sortBy === 'EFFORT_ASC') {
-    return unsortedFavoriteRecipes.sort(
-      (a, b) => a.average_effort_rating - b.average_effort_rating);
-  } else if (sortBy === 'EFFORT_DESC') {
-    return unsortedFavoriteRecipes.sort(
-      (a, b) => b.average_effort_rating - a.average_effort_rating);
-  } else if (sortBy === 'TASTE_ASC') {
-    return unsortedFavoriteRecipes.sort(
-      (a, b) => a.average_taste_rating - b.average_taste_rating);
-  } else {
-    return unsortedFavoriteRecipes.sort(
-      (a, b) => b.average_taste_rating - a.average_taste_rating);
-  }
+export const currentUserHasRated = state => {
+  let ratings = state.entities.ratings;
+  let ratingIds = Object.keys(ratings);
+  let ratingAuthorIds = ratingIds.map( id => ratings[id].author_id );
+  return ratingAuthorIds.includes(state.session.currentUser.id);
 };
 
 export const ingredientsArray = ({ ingredients }) => {
@@ -43,29 +23,35 @@ export const ingredientsArray = ({ ingredients }) => {
   return ingredientsUnsorted.sort( (a, b) => a.item_number - b.item_number );
 };
 
+export const ingredientsArraySimple = payload => {
+  if (!payload.ingredients) {
+    return [''];
+  }
+
+  let ingredientsObjects = ingredientsArray(payload);
+  return ingredientsObjects.map(obj => obj.ingredient);
+};
+
 export const instructionsArray = ({ instructions }) => {
   let instructionIds = Object.keys(instructions);
   let instructionsUnsorted = instructionIds.map( id => instructions[id] );
   return instructionsUnsorted.sort( (a, b) => a.step_number - b.step_number );
 };
 
-export const ratingAuthorIds = ({ ratings }) => {
-  let ratingIds = Object.keys(ratings);
-  return ratingIds.map( id => ratings[id].author_id );
+export const instructionsArraySimple = (payload) => {
+  if (!payload.instructions) {
+    return [''];
+  }
+
+  let instructionsObjects = instructionsArray(payload);
+  return instructionsObjects.map(obj => obj.instruction);
 };
 
-export const recipesArray = ({ recipes }) => {
-  let recipeIds = Object.keys(recipes);
-  return recipeIds.map( id => recipes[id] );
+export const selectRecipeAuthor = (state, recipe) => {
+  return recipe ? state.entities.users[recipe.author_id] : null;
 };
 
-export const sortedRecipesArray = state => {
-  const recipes = state.entities.recipes;
-  const sortBy = state.ui.sortBy;
-
-  const recipeIds = Object.keys(recipes);
-  const unsortedRecipes = recipeIds.map( id => recipes[id] );
-
+const sortRecipes = (sortBy, unsortedRecipes) => {
   if (sortBy === 'EFFORT_ASC') {
     return unsortedRecipes.sort(
       (a, b) => a.average_effort_rating - b.average_effort_rating);
@@ -81,30 +67,22 @@ export const sortedRecipesArray = state => {
   }
 };
 
-export const selectRecipeAuthor = ( state, recipe ) => {
-  return recipe ? state.entities.users[recipe.author_id] : null;
+export const sortedFavoriteRecipesArray = state => {
+  let favorites = state.entities.favorites;
+  let favoriteIds = Object.keys(favorites);
+  let favoritesArray = favoriteIds.map(id => favorites[id]);
+  let unsortedFavoriteRecipes = favoritesArray.map(favorite =>
+    Object.assign({},
+      state.entities.recipes[favorite.recipe_id],
+      { favorite_id: favorite.id }));
+
+  return sortRecipes(state.ui.sortBy, unsortedFavoriteRecipes);
 };
 
-export const simpleIngredientsArray = ({ ingredients }) => {
-  if (!ingredients) {
-    return [''];
-  }
+export const sortedRecipesArray = state => {
+  const recipes = state.entities.recipes;
+  const recipeIds = Object.keys(recipes);
+  const unsortedRecipes = recipeIds.map( id => recipes[id] );
 
-  let ingredientIds = Object.keys(ingredients);
-  let ingredientObjsUnsorted = ingredientIds.map( id => ingredients[id]);
-  let ingredientObjsSorted =
-    ingredientObjsUnsorted.sort( (a, b) => a.item_number - b.item_number );
-  return ingredientObjsSorted.map( obj => obj.ingredient );
-};
-
-export const simpleInstructionsArray = ({ instructions }) => {
-  if (!instructions) {
-    return [''];
-  }
-
-  let instructionIds = Object.keys(instructions);
-  let instructionObjsUnsorted = instructionIds.map( id => instructions[id]);
-  let instructionObjsSorted =
-    instructionObjsUnsorted.sort( (a, b) => a.step_number - b.step_number );
-  return instructionObjsSorted.map( obj => obj.instruction );
+  return sortRecipes(state.ui.sortBy, unsortedRecipes);
 };

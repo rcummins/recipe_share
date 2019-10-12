@@ -54,14 +54,16 @@ class RecipeDetail extends React.Component {
       ingredients,
       instructions,
       author,
-      currentUserFavorite } = this.props;
+      currentUser,
+      currentUserFavorite,
+      currentUserHasRated } = this.props;
 
     if (!recipe || !author) {
       return(<p>Loading...</p>);
     }
 
     let displayTitleAndFavoriteButton;
-    if (this.props.currentUser) {
+    if (currentUser) {
       displayTitleAndFavoriteButton = (
         <div className="title-and-favorite-button">
           <h3>{recipe.title}</h3>
@@ -80,7 +82,7 @@ class RecipeDetail extends React.Component {
     }
 
     let displayAuthorOptions;
-    if (this.props.currentUser && this.props.currentUser.id === author.id) {
+    if (currentUser && currentUser.id === author.id) {
       displayAuthorOptions = (
         <div className="recipe-author-options">
           <Link
@@ -95,8 +97,8 @@ class RecipeDetail extends React.Component {
     }
 
     let displayRatingForm;
-    if (this.props.currentUser && this.props.currentUser.id !== author.id) {
-      if (this.props.ratingAuthorIds.includes(this.props.currentUser.id)) {
+    if (currentUser && currentUser.id !== author.id) {
+      if (currentUserHasRated) {
         displayRatingForm = (
           <div className="rating-form">
             <div className="form-input-rating">
