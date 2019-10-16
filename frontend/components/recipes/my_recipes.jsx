@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import SortByContainer from '../sort_by/sort_by_container';
+import RecipeList from './recipe_list';
 
 class MyRecipes extends React.Component {
   constructor(props) {
@@ -24,6 +25,22 @@ class MyRecipes extends React.Component {
   render() {
     const { sortedRecipesArray } = this.props;
 
+    const additionalTBodyCell1 = recipe => (
+      <td>
+        <Link
+          className="link-edit-recipe"
+          to={`/recipes/${recipe.id}/edit`}>Edit</Link>
+      </td>
+    );
+
+    const additionalTBodyCell2 = recipe => (
+      <td>
+        <button
+          className="button-delete-recipe"
+          onClick={this.handleDelete(recipe)}>Delete</button>
+      </td>
+    );
+
     const display = sortedRecipesArray.length == 0 ? (
       <div className="recipe-list-empty">
         <p>You have not created any recipes.</p>
@@ -33,69 +50,13 @@ class MyRecipes extends React.Component {
 
         <SortByContainer />
 
-        <table>
+        <RecipeList
+          sortedRecipesArray={sortedRecipesArray}
+          additionalTHeadCell1={<th></th>}
+          additionalTHeadCell2={<th></th>}
+          additionalTBodyCell1={additionalTBodyCell1}
+          additionalTBodyCell2={additionalTBodyCell2} />
 
-          <thead>
-            <tr>
-              <th className="col-recipe">Recipe</th>
-              <th className="col-rating">Taste rating</th>
-              <th className="col-rating">Effort rating</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {sortedRecipesArray.map((recipe, index) => (
-              <tr key={index}>
-                <td className="col-recipe">
-                  <Link
-                    className="link-recipe-detail"
-                    to={`/recipes/${recipe.id}`}>{recipe.title}</Link>
-                </td>
-                <td className="col-rating">
-                  {
-                    recipe.average_taste_rating == '0.0' ? (
-                      <p>Not rated</p>
-                    ) : (
-                      <div className="rating-number-icon">
-                        <p>{Number
-                          .parseFloat(recipe.average_taste_rating)
-                          .toFixed(1)}</p>
-                        <img src={window.yellowStarURL} />
-                      </div>
-                    )
-                  }
-                </td>
-                <td className="col-rating">
-                  {
-                    recipe.average_effort_rating == '0.0' ? (
-                      <p>Not rated</p>
-                    ) : (
-                      <div className="rating-number-icon">
-                        <p>{Number
-                          .parseFloat(recipe.average_effort_rating)
-                          .toFixed(1)}</p>
-                        <img src={window.yellowKnifeURL} />
-                      </div>
-                    )
-                  }
-                </td>
-                <td>
-                  <Link
-                    className="link-edit-recipe"
-                    to={`/recipes/${recipe.id}/edit`}>Edit</Link>
-                </td>
-                <td>
-                  <button
-                    className="button-delete-recipe"
-                    onClick={this.handleDelete(recipe)}>Delete</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-
-        </table>
       </div>
     )
 
