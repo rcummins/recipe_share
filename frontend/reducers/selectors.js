@@ -1,16 +1,20 @@
 export const currentUserFavorite = state => {
-  let favorites = state.entities.favorites;
-  let favoriteIds = Object.keys(favorites);
-  let favoritesArray = favoriteIds.map( id => favorites[id] );
   let currentUser = state.session.currentUser;
-
   if (!currentUser) {
     return null;
   }
+
+  let favorites = state.entities.favorites;
+  let favoriteIds = Object.keys(favorites);
+  let favoritesArray = favoriteIds.map( id => favorites[id] );
   return favoritesArray.find( fav => fav.user_id === currentUser.id );
 };
 
 export const currentUserHasRated = state => {
+  if (!state.session.currentUser) {
+    return null;
+  }
+
   let ratings = state.entities.ratings;
   let ratingIds = Object.keys(ratings);
   let ratingAuthorIds = ratingIds.map( id => ratings[id].author_id );
