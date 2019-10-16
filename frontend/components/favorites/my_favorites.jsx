@@ -1,19 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import SortByContainer from '../sort_by/sort_by_container';
+
 class MyFavorites extends React.Component {
   constructor(props) {
     super(props);
-
-    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchMyFavorites(this.props.currentUser.id);
-  }
-
-  handleChange(e) {
-    this.props.receiveSortByMethod(e.target.value);
   }
 
   handleDelete(recipe) {
@@ -24,7 +20,7 @@ class MyFavorites extends React.Component {
   }
 
   render() {
-    const { sortedFavoriteRecipesArray, sortBy } = this.props;
+    const { sortedFavoriteRecipesArray } = this.props;
 
     const display = sortedFavoriteRecipesArray.length == 0 ? (
       <div className="recipe-list-empty">
@@ -37,18 +33,7 @@ class MyFavorites extends React.Component {
     ) : (
       <div className="recipe-list">
 
-        <form className="sort-by">
-          <label htmlFor="sort-by-select">Sort recipes by:</label>
-          <select
-            id="sort-by-select"
-            defaultValue={sortBy}
-            onChange={this.handleChange}>
-            <option value="TASTE_ASC">Taste rating - low to high</option>
-            <option value="TASTE_DESC">Taste rating - high to low</option>
-            <option value="EFFORT_ASC">Effort rating - low to high</option>
-            <option value="EFFORT_DESC">Effort rating - high to low</option>
-          </select>
-        </form>
+        <SortByContainer />
 
         <table>
 
