@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :recipes, only: [:index, :create, :show, :update, :destroy]
     resources :ingredients, only: [:create, :destroy]
     resources :instructions, only: [:create, :destroy]
-    resources :ratings, only: [:index, :create]
+    resources :ratings, only: [:create]
     resources :favorites, only: [:index, :create, :destroy]
   end
 end
