@@ -1,24 +1,22 @@
-# README
+# Recipe Share
+[renata-recipe-share.herokuapp.com](https://renata-recipe-share.herokuapp.com/?utm_source=github&utm_medium=readme&utm_campaign=github)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Application description
+Recipe Share is an app where you can post cooking recipes and discover new recipes based on their average rating. Recipe Share allows users to:
+* Create an account and log in/out
+* Create and edit your own recipes
+* Rate other recipes on their taste and effort involved
+* Sort recipes by rating
+* Add recipes to your list of favorites
 
-Things you may want to cover:
+## Design docs
+* [MVP feature list](./wiki/MVP-feature-list)
+* [Database schema](./wiki/Database-schema)
+* [State shape](./wiki/State-shape)
+* [Backend routes](./wiki/Backend-routes)
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Future
+Suggestions to improve Recipe Share are always welcome! Here are some features I would like to add to Recipe Share in the future:
+* Changing the serving size for a recipe dynamically recalculates the quantities of all ingredients
+* Recipe authors can upload photos to be shown along with ingredients and instructions
+* Recipes can be tagged based on main ingredients, entree/side/dessert, holiday, etc., and users can filter recipes by tags
