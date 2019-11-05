@@ -10,10 +10,10 @@ Recipe Share is an app where you can post cooking recipes and discover new recip
 * Add recipes to your list of favorites
 
 ## Design docs
-* [MVP feature list](./wiki/MVP-feature-list)
-* [Database schema](./wiki/Database-schema)
-* [State shape](./wiki/State-shape)
-* [Backend routes](./wiki/Backend-routes)
+* [MVP feature list](https://github.com/rcummins/recipe_share/wiki/MVP-feature-list)
+* [Database schema](https://github.com/rcummins/recipe_share/wiki/Database-schema)
+* [State shape](https://github.com/rcummins/recipe_share/wiki/State-shape)
+* [Backend routes](https://github.com/rcummins/recipe_share/wiki/Backend-routes)
 
 ## Future
 Suggestions to improve Recipe Share are always welcome! Here are some features I would like to add to Recipe Share in the future:
