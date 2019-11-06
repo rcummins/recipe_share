@@ -20,7 +20,7 @@ class AllRecipes extends React.Component {
         <SortByContainer />
 
         <RecipeList
-          sortedRecipesArray={this.props.sortedRecipesArray}
+          sortedRecipesArray={this.props.allRecipesArraySorted}
           additionalTHeadCell1={null}
           additionalTHeadCell2={null}
           additionalTBodyCell1={() => null}

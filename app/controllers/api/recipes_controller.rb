@@ -1,11 +1,6 @@
 class Api::RecipesController < ApplicationController
   def index
-    @recipes =
-      if params[:author_id]
-        Recipe.where(author_id: params[:author_id])
-      else
-        Recipe.all
-      end
+    @recipes = Recipe.all
     render :index
   end
 

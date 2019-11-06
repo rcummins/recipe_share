@@ -12,7 +12,7 @@ class MyRecipes extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchMyRecipes(this.props.currentUser.id);
+    this.props.fetchRecipes();
   }
 
   handleDelete(recipe) {
@@ -23,7 +23,7 @@ class MyRecipes extends React.Component {
   }
 
   render() {
-    const { sortedRecipesArray } = this.props;
+    const { myRecipesArraySorted } = this.props;
 
     const additionalTBodyCell1 = recipe => (
       <td>
@@ -41,7 +41,7 @@ class MyRecipes extends React.Component {
       </td>
     );
 
-    const display = sortedRecipesArray.length == 0 ? (
+    const display = myRecipesArraySorted.length == 0 ? (
       <div className="recipe-list-empty">
         <p>You have not created any recipes.</p>
       </div>
@@ -51,7 +51,7 @@ class MyRecipes extends React.Component {
         <SortByContainer />
 
         <RecipeList
-          sortedRecipesArray={sortedRecipesArray}
+          sortedRecipesArray={myRecipesArraySorted}
           additionalTHeadCell1={<th></th>}
           additionalTHeadCell2={<th></th>}
           additionalTBodyCell1={additionalTBodyCell1}

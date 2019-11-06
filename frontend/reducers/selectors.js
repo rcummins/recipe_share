@@ -1,3 +1,5 @@
+// Selectors used only for recipe detail
+
 export const currentUserFavorite = state => {
   let currentUser = state.session.currentUser;
   if (!currentUser) {
@@ -20,6 +22,12 @@ export const currentUserHasRated = state => {
   let ratingAuthorIds = ratingIds.map( id => ratings[id].author_id );
   return ratingAuthorIds.includes(state.session.currentUser.id);
 };
+
+export const selectRecipeAuthor = (state, recipe) => {
+  return recipe ? state.entities.users[recipe.author_id] : null;
+};
+
+// Selectors for ingredients and instructions
 
 export const ingredientsArray = ({ ingredients }) => {
   let ingredientIds = Object.keys(ingredients);
@@ -51,9 +59,7 @@ export const instructionsArraySimple = (payload) => {
   return instructionsObjects.map(obj => obj.instruction);
 };
 
-export const selectRecipeAuthor = (state, recipe) => {
-  return recipe ? state.entities.users[recipe.author_id] : null;
-};
+// Selectors for lists of recipes
 
 const sortRecipes = (sortBy, unsortedRecipes) => {
   if (sortBy === 'EFFORT_ASC') {
@@ -71,7 +77,19 @@ const sortRecipes = (sortBy, unsortedRecipes) => {
   }
 };
 
-export const sortedFavoriteRecipesArray = state => {
+const allRecipesArray = state => {
+  const recipes = state.entities.recipes;
+  const recipeIds = Object.keys(recipes);
+  return recipeIds.map(id => recipes[id]);
+};
+
+export const allRecipesArraySorted = state => {
+  const allRecipes = allRecipesArray(state);
+
+  return sortRecipes(state.ui.sortBy, allRecipes);
+};
+
+export const myFavoriteRecipesArraySorted = state => {
   let favorites = state.entities.favorites;
   let favoriteIds = Object.keys(favorites);
   let favoritesArray = favoriteIds.map(id => favorites[id]);
@@ -83,10 +101,9 @@ export const sortedFavoriteRecipesArray = state => {
   return sortRecipes(state.ui.sortBy, unsortedFavoriteRecipes);
 };
 
-export const sortedRecipesArray = state => {
-  const recipes = state.entities.recipes;
-  const recipeIds = Object.keys(recipes);
-  const unsortedRecipes = recipeIds.map( id => recipes[id] );
+export const myRecipesArraySorted = state => {
+  const allRecipes = allRecipesArray(state);
+  const myRecipes = allRecipes.filter(recipe => recipe.author_id === state.session.currentUser.id);
 
-  return sortRecipes(state.ui.sortBy, unsortedRecipes);
+  return sortRecipes(state.ui.sortBy, myRecipes);
 };

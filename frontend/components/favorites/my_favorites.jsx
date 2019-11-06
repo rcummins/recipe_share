@@ -20,7 +20,7 @@ class MyFavorites extends React.Component {
   }
 
   render() {
-    const { sortedFavoriteRecipesArray } = this.props;
+    const { myFavoriteRecipesArraySorted } = this.props;
 
     const additionalTBodyCell1 = recipe => (
       <td>
@@ -30,7 +30,7 @@ class MyFavorites extends React.Component {
       </td>
     );
 
-    const display = sortedFavoriteRecipesArray.length == 0 ? (
+    const display = myFavoriteRecipesArraySorted.length == 0 ? (
       <div className="recipe-list-empty">
         <p>You have not added any recipes to your favorites.</p>
         <p>
@@ -44,7 +44,7 @@ class MyFavorites extends React.Component {
         <SortByContainer />
 
         <RecipeList
-          sortedRecipesArray={sortedFavoriteRecipesArray}
+          sortedRecipesArray={myFavoriteRecipesArraySorted}
           additionalTHeadCell1={<th></th>}
           additionalTHeadCell2={null}
           additionalTBodyCell1={additionalTBodyCell1}

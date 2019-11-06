@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 
 import { fetchRecipes } from '../../actions/recipe_actions';
-import { sortedRecipesArray } from '../../reducers/selectors';
+import { allRecipesArraySorted } from '../../reducers/selectors';
 import AllRecipes from './all_recipes';
 
 const mapStateToProps = state => ({
-  sortedRecipesArray: sortedRecipesArray(state)
+  allRecipesArraySorted: allRecipesArraySorted(state)
 });
 
 const mapDispatchToProps = dispatch => ({
