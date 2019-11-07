@@ -18,8 +18,9 @@ class SessionForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.submitAction({ user: this.state }).then(
-      () => {
+      sessionAction => {
         this.props.clearSessionErrors();
+        this.props.fetchMyFavorites(sessionAction.user.id);
       }
     );
   }

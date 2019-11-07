@@ -4,7 +4,6 @@ import {
   REMOVE_RECIPE,
   RECEIVE_RECIPE_DETAIL
 } from '../actions/recipe_actions';
-import { RECEIVE_FAVORITES } from '../actions/favorite_actions';
 
 const recipesReducer = ( oldState = {}, action ) => {
   Object.freeze(oldState);
@@ -33,9 +32,6 @@ const recipesReducer = ( oldState = {}, action ) => {
       newRecipe = {};
       newRecipe[action.payload.recipe.id] = action.payload.recipe;
       return Object.assign({}, oldState, newRecipe);
-
-    case RECEIVE_FAVORITES:
-      return Object.assign({}, action.payload.recipes);
 
     default:
       return oldState;

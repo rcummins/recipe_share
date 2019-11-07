@@ -1,15 +1,17 @@
 // Selectors used only for recipe detail
 
-export const currentUserFavorite = state => {
+export const currentUserFavorite = (state, recipe) => {
   let currentUser = state.session.currentUser;
-  if (!currentUser) {
+  if (!currentUser || !recipe) {
     return null;
   }
 
   let favorites = state.entities.favorites;
   let favoriteIds = Object.keys(favorites);
   let favoritesArray = favoriteIds.map( id => favorites[id] );
-  return favoritesArray.find( fav => fav.user_id === currentUser.id );
+  return favoritesArray.find( fav => (
+    fav.user_id === currentUser.id && fav.recipe_id === recipe.id
+  ));
 };
 
 export const currentUserHasRated = state => {

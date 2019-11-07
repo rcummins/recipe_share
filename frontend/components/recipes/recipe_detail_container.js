@@ -19,7 +19,7 @@ const mapStateToProps = (state, ownProps) => {
     ingredients: ingredientsArray(state.entities),
     instructions: instructionsArray(state.entities),
     currentUserHasRated: currentUserHasRated(state),
-    currentUserFavorite: currentUserFavorite(state),
+    currentUserFavorite: currentUserFavorite(state, recipe),
     currentUser: state.session.currentUser
   };
 };

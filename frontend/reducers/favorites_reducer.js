@@ -3,7 +3,6 @@ import {
   RECEIVE_FAVORITE,
   REMOVE_FAVORITE
 } from '../actions/favorite_actions';
-import { RECEIVE_RECIPE_DETAIL } from '../actions/recipe_actions';
 
 const favoritesReducer = ( oldState = {}, action ) => {
   Object.freeze(oldState);
@@ -14,7 +13,6 @@ const favoritesReducer = ( oldState = {}, action ) => {
   switch(action.type) {
 
     case RECEIVE_FAVORITES:
-    case RECEIVE_RECIPE_DETAIL:
       return Object.assign({}, action.payload.favorites);
 
     case RECEIVE_FAVORITE:
