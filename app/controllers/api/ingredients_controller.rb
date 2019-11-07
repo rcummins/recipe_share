@@ -3,7 +3,9 @@ class Api::IngredientsController < ApplicationController
     @ingredient = Ingredient.new(ingredient_params)
 
     if @ingredient.save
-      render json: @ingredient, status: :created
+      render partial: 'ingredient',
+        locals: {ingredient: @ingredient},
+        status: :created
     else
       render json: @ingredient.errors.full_messages,
         status: :unprocessable_entity

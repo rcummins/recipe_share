@@ -8,7 +8,9 @@ class Api::RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
 
     if @recipe.save
-      render json: @recipe, status: :created
+      render partial: 'recipe',
+        locals: {recipe: @recipe},
+        status: :created
     else
       render json: @recipe.errors.full_messages, status: :unprocessable_entity
     end
@@ -25,7 +27,7 @@ class Api::RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
 
     if @recipe.update(recipe_params)
-      render json: @recipe
+      render partial: 'recipe', locals: {recipe: @recipe}
     else
       render json: @recipe.errors.full_messages, status: :unprocessable_entity
     end
