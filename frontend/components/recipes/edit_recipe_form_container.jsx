@@ -126,23 +126,28 @@ class EditRecipeForm extends React.Component {
       clearRecipeErrors
     } = this.props;
 
-    const display = ( currentUser.id === this.state.author_id ) ? (
-      <RecipeForm
-        formData={this.state.formData}
-        formTitle={'Edit your recipe'}
-        formSubmitButtonText={'Update recipe'}
-        history={history}
-        currentUser={currentUser}
-        recipeErrors={recipeErrors}
-        submitAction1={submitAction1}
-        submitAction2={submitAction2}
-        clearRecipeErrors={clearRecipeErrors}
-      />
-    ) : (
-      <div className="action-not-allowed">
-        <p>Sorry, you can't edit this recipe because you didn't create it.</p>
-      </div>
-    )
+    let display = null;
+    if (!this.state.author_id) {
+      display = <p>Loading...</p>;
+    } else if ( currentUser.id === this.state.author_id ) {
+      display =
+        <RecipeForm
+          formData={this.state.formData}
+          formTitle={'Edit your recipe'}
+          formSubmitButtonText={'Update recipe'}
+          history={history}
+          currentUser={currentUser}
+          recipeErrors={recipeErrors}
+          submitAction1={submitAction1}
+          submitAction2={submitAction2}
+          clearRecipeErrors={clearRecipeErrors}
+        />;
+    } else {
+      display =
+        <div className="action-not-allowed">
+          <p>Sorry, you can't edit this recipe because you didn't create it.</p>
+        </div>;
+    }
 
     return( display );
   }
