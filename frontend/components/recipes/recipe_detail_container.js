@@ -18,7 +18,7 @@ const mapStateToProps = (state, ownProps) => {
     author: selectRecipeAuthor(state, recipe),
     ingredients: ingredientsArray(state.entities),
     instructions: instructionsArray(state.entities),
-    currentUserHasRated: currentUserHasRated(state),
+    currentUserHasRated: currentUserHasRated(state, recipe),
     currentUserFavorite: currentUserFavorite(state, recipe),
     currentUser: state.session.currentUser
   };

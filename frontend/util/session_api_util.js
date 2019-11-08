@@ -20,3 +20,10 @@ export const deleteSession = () => (
     url: '/api/session'
   })
 );
+
+export const fetchCurrentUserFavoritesRatings = userId => (
+  $.ajax({
+    method: 'GET',
+    url: `/api/users/${userId}`
+  })
+);

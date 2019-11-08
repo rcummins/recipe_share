@@ -20,7 +20,7 @@ class SessionForm extends React.Component {
     this.props.submitAction({ user: this.state }).then(
       sessionAction => {
         this.props.clearSessionErrors();
-        this.props.fetchMyFavorites(sessionAction.user.id);
+        this.props.fetchCurrentUserFavoritesRatings(sessionAction.user.id)
       }
     );
   }

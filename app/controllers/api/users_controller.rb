@@ -4,10 +4,15 @@ class Api::UsersController < ApplicationController
 
     if @user.save
       login!(@user)
-      render :show
+      render partial: 'user', locals: {user: @user}
     else
       render json: @user.errors.full_messages, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @user = User.includes(:favorites, :ratings).find(params[:id])
+    render :show
   end
 
   private

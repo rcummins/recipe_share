@@ -14,15 +14,18 @@ export const currentUserFavorite = (state, recipe) => {
   ));
 };
 
-export const currentUserHasRated = state => {
-  if (!state.session.currentUser) {
+export const currentUserHasRated = (state, recipe) => {
+  let currentUser = state.session.currentUser;
+  if (!currentUser || !recipe) {
     return null;
   }
 
   let ratings = state.entities.ratings;
   let ratingIds = Object.keys(ratings);
-  let ratingAuthorIds = ratingIds.map( id => ratings[id].author_id );
-  return ratingAuthorIds.includes(state.session.currentUser.id);
+  let ratingsArray = ratingIds.map( id => ratings[id] );
+  return ratingsArray.find( rating => (
+    rating.author_id === currentUser.id && rating.recipe_id === recipe.id
+  ));
 };
 
 export const selectRecipeAuthor = (state, recipe) => {

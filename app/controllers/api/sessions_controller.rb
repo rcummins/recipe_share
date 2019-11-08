@@ -10,7 +10,7 @@ class Api::SessionsController < ApplicationController
         status: :unauthorized
     else
       login!(@user)
-      render 'api/users/show'
+      render partial: 'api/users/user', locals: {user: @user}
     end
   end
 
