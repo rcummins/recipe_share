@@ -6,9 +6,9 @@ export const RECEIVE_RECIPE = 'RECEIVE_RECIPE';
 export const REMOVE_RECIPE = 'REMOVE_RECIPE';
 export const RECEIVE_RECIPE_DETAIL = 'RECEIVE_RECIPE_DETAIL';
 
-const receiveRecipes = recipes => ({
+const receiveRecipes = payload => ({
   type:RECEIVE_RECIPES,
-  recipes
+  payload
 });
 
 const receiveRecipe = recipe => ({
@@ -28,7 +28,7 @@ const receiveRecipeDetail = payload => ({
 
 export const fetchRecipes = () => dispatch => (
   RecipeAPIUtil.fetchRecipes().then(
-    recipes => dispatch(receiveRecipes(recipes))
+    payload => dispatch(receiveRecipes(payload))
   )
 );
 

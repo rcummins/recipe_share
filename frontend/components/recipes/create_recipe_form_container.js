@@ -15,13 +15,21 @@ const mapStateToProps = state => ({
   },
   formTitle: 'Create a new recipe',
   formSubmitButtonText: 'Create recipe',
+  preexistingIngredientIds: [],
+  preexistingInstructionIds: [],
   currentUser: state.session.currentUser,
   recipeErrors: state.errors.recipeErrors
 });
 
 const mapDispatchToProps = dispatch => ({
   submitAction1: formRecipe => dispatch(createRecipe(formRecipe)),
-  submitAction2: (ingredients, instructions, recipeAction) => {
+  submitAction2: (
+      preexistingIngredientIds,
+      preexistingInstructionIds,
+      ingredients,
+      instructions,
+      recipeAction
+    ) => {
 
     // loop over ingredients to create each ingredient
     ingredients.forEach((ingredient, index) => {

@@ -2,7 +2,10 @@ import {
   RECEIVE_INGREDIENT,
   REMOVE_INGREDIENT
 } from '../actions/ingredient_actions';
-import { RECEIVE_RECIPE_DETAIL } from '../actions/recipe_actions';
+import {
+  RECEIVE_RECIPE_DETAIL,
+  RECEIVE_RECIPES
+} from '../actions/recipe_actions';
 
 const ingredientsReducer = ( oldState = {}, action ) => {
   Object.freeze(oldState);
@@ -20,6 +23,7 @@ const ingredientsReducer = ( oldState = {}, action ) => {
       return newState;
 
     case RECEIVE_RECIPE_DETAIL:
+    case RECEIVE_RECIPES:
       return Object.assign({}, action.payload.ingredients);
 
     default:

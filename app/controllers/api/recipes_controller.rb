@@ -1,6 +1,8 @@
 class Api::RecipesController < ApplicationController
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe
+      .includes(:author, :ingredients, :instructions)
+      .all
     render :index
   end
 

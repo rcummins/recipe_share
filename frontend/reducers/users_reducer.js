@@ -1,4 +1,7 @@
-import { RECEIVE_RECIPE_DETAIL } from '../actions/recipe_actions';
+import {
+  RECEIVE_RECIPE_DETAIL,
+  RECEIVE_RECIPES
+} from '../actions/recipe_actions';
 
 const usersReducer = ( oldState = {}, action ) => {
   Object.freeze(oldState);
@@ -7,6 +10,9 @@ const usersReducer = ( oldState = {}, action ) => {
 
     case RECEIVE_RECIPE_DETAIL:
       return Object.assign({}, oldState, action.payload.author);
+
+    case RECEIVE_RECIPES:
+      return Object.assign({}, action.payload.users);
 
     default:
       return oldState;

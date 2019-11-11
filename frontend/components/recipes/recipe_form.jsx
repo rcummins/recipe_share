@@ -67,6 +67,8 @@ class RecipeForm extends React.Component {
         this.props.clearRecipeErrors();
 
         this.props.submitAction2(
+          this.props.preexistingIngredientIds,
+          this.props.preexistingInstructionIds,
           this.state.ingredients,
           this.state.instructions,
           recipeAction);

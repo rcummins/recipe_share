@@ -14,9 +14,7 @@ const recipesReducer = ( oldState = {}, action ) => {
   switch(action.type) {
 
     case RECEIVE_RECIPES:
-      newState = {};
-      action.recipes.forEach( recipe => newState[recipe.id] = recipe );
-      return newState;
+      return Object.assign({}, action.payload.recipes);
 
     case RECEIVE_RECIPE:
       newRecipe = {};

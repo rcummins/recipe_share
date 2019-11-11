@@ -1,4 +1,4 @@
-// Selectors used only for recipe detail
+// Selectors for a recipe's favorites, ratings and author
 
 export const currentUserFavorite = (state, recipe) => {
   let currentUser = state.session.currentUser;
@@ -34,34 +34,44 @@ export const selectRecipeAuthor = (state, recipe) => {
 
 // Selectors for ingredients and instructions
 
-export const ingredientsArray = ({ ingredients }) => {
+export const ingredientsArray = ({ ingredients }, recipe) => {
+  if (!ingredients) { return []; }
   let ingredientIds = Object.keys(ingredients);
-  let ingredientsUnsorted = ingredientIds.map( id => ingredients[id] );
+  let allIngredients = ingredientIds.map( id => ingredients[id] );
+  let ingredientsUnsorted = allIngredients.filter( ingredient => (
+    ingredient.recipe_id === recipe.id
+  ));
   return ingredientsUnsorted.sort( (a, b) => a.item_number - b.item_number );
 };
 
-export const ingredientsArraySimple = payload => {
-  if (!payload.ingredients) {
-    return [''];
-  }
-
-  let ingredientsObjects = ingredientsArray(payload);
-  return ingredientsObjects.map(obj => obj.ingredient);
+export const ingredientIdsArray = (state, recipe) => {
+  const ingredients = ingredientsArray(state, recipe);
+  return ingredients.map(obj => obj.id);
 };
 
-export const instructionsArray = ({ instructions }) => {
+export const ingredientValuesArray = (state, recipe) => {
+  const ingredients = ingredientsArray(state, recipe);
+  return ingredients.map(obj => obj.ingredient);
+};
+
+export const instructionsArray = ({ instructions }, recipe) => {
+  if (!instructions) { return []; }
   let instructionIds = Object.keys(instructions);
-  let instructionsUnsorted = instructionIds.map( id => instructions[id] );
+  let allInstructions = instructionIds.map( id => instructions[id] );
+  let instructionsUnsorted = allInstructions.filter( instruction => (
+    instruction.recipe_id === recipe.id
+  ));
   return instructionsUnsorted.sort( (a, b) => a.step_number - b.step_number );
 };
 
-export const instructionsArraySimple = (payload) => {
-  if (!payload.instructions) {
-    return [''];
-  }
+export const instructionIdsArray = (state, recipe) => {
+  const instructions = instructionsArray(state, recipe);
+  return instructions.map(obj => obj.id);
+};
 
-  let instructionsObjects = instructionsArray(payload);
-  return instructionsObjects.map(obj => obj.instruction);
+export const instructionValuesArray = (state, recipe) => {
+  const instructions = instructionsArray(state, recipe);
+  return instructions.map(obj => obj.instruction);
 };
 
 // Selectors for lists of recipes
@@ -108,7 +118,9 @@ export const myFavoriteRecipesArraySorted = state => {
 
 export const myRecipesArraySorted = state => {
   const allRecipes = allRecipesArray(state);
-  const myRecipes = allRecipes.filter(recipe => recipe.author_id === state.session.currentUser.id);
+  const myRecipes = allRecipes.filter(recipe => (
+    recipe.author_id === state.session.currentUser.id
+  ));
 
   return sortRecipes(state.ui.sortBy, myRecipes);
 };
