@@ -35,7 +35,7 @@ export const selectRecipeAuthor = (state, recipe) => {
 // Selectors for ingredients and instructions
 
 export const ingredientsArray = ({ ingredients }, recipe) => {
-  if (!ingredients) { return []; }
+  if (!ingredients || !recipe) { return []; }
   let ingredientIds = Object.keys(ingredients);
   let allIngredients = ingredientIds.map( id => ingredients[id] );
   let ingredientsUnsorted = allIngredients.filter( ingredient => (
@@ -55,7 +55,7 @@ export const ingredientValuesArray = (state, recipe) => {
 };
 
 export const instructionsArray = ({ instructions }, recipe) => {
-  if (!instructions) { return []; }
+  if (!instructions || !recipe) { return []; }
   let instructionIds = Object.keys(instructions);
   let allInstructions = instructionIds.map( id => instructions[id] );
   let instructionsUnsorted = allInstructions.filter( instruction => (

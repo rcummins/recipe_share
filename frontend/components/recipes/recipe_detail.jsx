@@ -46,6 +46,8 @@ class RecipeDetail extends React.Component {
       currentUserFavorite,
       currentUserHasRated } = this.props;
 
+    if (!recipe) { return <div className="recipe-detail"></div>; }
+
     let displayTitleAndFavoriteButton;
     if (currentUser) {
       displayTitleAndFavoriteButton = (
