@@ -4,9 +4,8 @@ class Api::RatingsController < ApplicationController
 
     if @rating.save
       Recipe.find(rating_params[:recipe_id]).update_average_ratings
-      render partial: 'rating',
-        locals: {rating: @rating},
-        status: :created
+      @rating = Rating.includes(:recipe).find(@rating.id)
+      render :show
     else
       render json: @rating.errors.full_messages, status: :unprocessable_entity
     end

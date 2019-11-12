@@ -13,7 +13,7 @@ const ratingsReducer = ( oldState = {}, action ) => {
 
     case RECEIVE_RATING:
       let newRating = {};
-      newRating[action.rating.id] = action.rating;
+      newRating[action.payload.rating.id] = action.payload.rating;
       return Object.assign({}, oldState, newRating);
 
     default:

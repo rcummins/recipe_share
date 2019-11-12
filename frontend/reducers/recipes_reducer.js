@@ -4,6 +4,7 @@ import {
   RECEIVE_UPDATED_RECIPE,
   REMOVE_RECIPE
 } from '../actions/recipe_actions';
+import { RECEIVE_RATING } from '../actions/rating_actions';
 
 const recipesReducer = ( oldState = {}, action ) => {
   Object.freeze(oldState);
@@ -14,6 +15,7 @@ const recipesReducer = ( oldState = {}, action ) => {
       return Object.assign({}, action.payload.recipes);
 
     case RECEIVE_NEW_RECIPE:
+    case RECEIVE_RATING:
       let newRecipe = {};
       newRecipe[action.payload.recipe.id] = action.payload.recipe;
       return Object.assign({}, oldState, newRecipe);

@@ -3,14 +3,14 @@ import { receiveRatingErrors } from './rating_error_actions';
 
 export const RECEIVE_RATING = 'RECEIVE_RATING';
 
-const receiveRating = rating => ({
+const receiveRating = payload => ({
   type: RECEIVE_RATING,
-  rating
+  payload
 });
 
 export const createRating = formRating => dispatch => (
   RatingAPIUtil.createRating(formRating).then(
-    rating => dispatch(receiveRating(rating)),
+    payload => dispatch(receiveRating(payload)),
     errors => dispatch(receiveRatingErrors(errors.responseJSON))
   )
 );
