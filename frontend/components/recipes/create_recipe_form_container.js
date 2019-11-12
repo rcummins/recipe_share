@@ -36,7 +36,7 @@ const mapDispatchToProps = dispatch => ({
 
       let formIngredient = {
         ingredient: {
-          recipe_id: recipeAction.recipe.id,
+          recipe_id: recipeAction.payload.recipe.id,
           item_number: index + 1,
           ingredient: ingredient
         }
@@ -50,7 +50,7 @@ const mapDispatchToProps = dispatch => ({
 
       let formInstruction = {
         instruction: {
-          recipe_id: recipeAction.recipe.id,
+          recipe_id: recipeAction.payload.recipe.id,
           step_number: index + 1,
           instruction: instruction
         }

@@ -10,9 +10,8 @@ class Api::RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
 
     if @recipe.save
-      render partial: 'recipe',
-        locals: {recipe: @recipe},
-        status: :created
+      @recipe = Recipe.includes(:author).find(@recipe.id)
+      render :show
     else
       render json: @recipe.errors.full_messages, status: :unprocessable_entity
     end
