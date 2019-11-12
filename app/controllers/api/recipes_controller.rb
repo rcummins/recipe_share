@@ -18,13 +18,6 @@ class Api::RecipesController < ApplicationController
     end
   end
 
-  def show
-    @recipe = Recipe
-    .includes(:ingredients, :instructions, :author, :ratings)
-    .find(params[:id])
-    render :show
-  end
-
   def update
     @recipe = Recipe.find(params[:id])
 

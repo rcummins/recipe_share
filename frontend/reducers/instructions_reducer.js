@@ -2,10 +2,7 @@ import {
   RECEIVE_INSTRUCTION,
   REMOVE_INSTRUCTION
 } from '../actions/instruction_actions';
-import {
-  RECEIVE_RECIPE_DETAIL,
-  RECEIVE_RECIPES
-} from '../actions/recipe_actions';
+import { RECEIVE_RECIPES } from '../actions/recipe_actions';
 
 const instructionsReducer = ( oldState = {}, action ) => {
   Object.freeze(oldState);
@@ -22,7 +19,6 @@ const instructionsReducer = ( oldState = {}, action ) => {
       delete newState[action.instruction.id];
       return newState;
 
-    case RECEIVE_RECIPE_DETAIL:
     case RECEIVE_RECIPES:
       return Object.assign({}, action.payload.instructions);
 

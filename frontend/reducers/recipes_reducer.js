@@ -1,8 +1,7 @@
 import {
   RECEIVE_RECIPES,
   RECEIVE_RECIPE,
-  REMOVE_RECIPE,
-  RECEIVE_RECIPE_DETAIL
+  REMOVE_RECIPE
 } from '../actions/recipe_actions';
 
 const recipesReducer = ( oldState = {}, action ) => {
@@ -25,11 +24,6 @@ const recipesReducer = ( oldState = {}, action ) => {
       newState = Object.assign({}, oldState);
       delete newState[action.recipe.id];
       return newState;
-
-    case RECEIVE_RECIPE_DETAIL:
-      newRecipe = {};
-      newRecipe[action.payload.recipe.id] = action.payload.recipe;
-      return Object.assign({}, oldState, newRecipe);
 
     default:
       return oldState;
