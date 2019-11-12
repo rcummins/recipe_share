@@ -28,10 +28,9 @@ class Api::RecipesController < ApplicationController
   end
 
   def destroy
-    @recipe = Recipe.find(params[:id])
+    @recipe = Recipe.includes(:ingredients, :instructions).find(params[:id])
+    render :destroy
     @recipe.destroy
-
-    render json: @recipe
   end
 
   private

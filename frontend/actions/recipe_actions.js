@@ -21,9 +21,9 @@ const receiveUpdatedRecipe = recipe => ({
   recipe
 });
 
-const removeRecipe = recipe => ({
+const removeRecipe = payload => ({
   type: REMOVE_RECIPE,
-  recipe
+  payload
 });
 
 export const fetchRecipes = () => dispatch => (
@@ -48,6 +48,6 @@ export const updateRecipe = formRecipe => dispatch => (
 
 export const deleteRecipe = formRecipe => dispatch => (
   RecipeAPIUtil.deleteRecipe(formRecipe).then(
-    recipe => dispatch(removeRecipe(recipe))
+    payload => dispatch(removeRecipe(payload))
   )
 );

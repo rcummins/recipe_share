@@ -27,7 +27,7 @@ const recipesReducer = ( oldState = {}, action ) => {
 
     case REMOVE_RECIPE:
       let newState = Object.assign({}, oldState);
-      delete newState[action.recipe.id];
+      delete newState[action.payload.recipe.id];
       return newState;
 
     default:
