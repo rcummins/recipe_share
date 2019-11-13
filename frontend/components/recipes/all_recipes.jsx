@@ -9,7 +9,7 @@ class AllRecipes extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.allRecipesArraySorted.length === 0) {
+    if (!this.props.recipesFetched) {
       this.props.fetchRecipes();
     }
   }

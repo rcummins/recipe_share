@@ -124,3 +124,7 @@ export const myRecipesArraySorted = state => {
 
   return sortRecipes(state.ui.sortBy, myRecipes);
 };
+
+export const recipesFetched = state => (
+  Object.keys(state.entities.recipes).length > 0
+);

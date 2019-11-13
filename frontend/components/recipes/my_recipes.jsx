@@ -12,7 +12,9 @@ class MyRecipes extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchRecipes();
+    if (!this.props.recipesFetched) {
+      this.props.fetchRecipes();
+    }
   }
 
   handleDelete(recipe) {

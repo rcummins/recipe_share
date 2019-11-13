@@ -8,11 +8,6 @@ class MyFavorites extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
-    this.props.fetchMyFavorites(this.props.currentUser.id);
-    this.props.fetchRecipes();
-  }
-
   handleDelete(recipe) {
     return e => {
       e.preventDefault();

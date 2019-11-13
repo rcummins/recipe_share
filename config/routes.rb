@@ -9,6 +9,6 @@ Rails.application.routes.draw do
     resources :ingredients, only: [:create, :destroy]
     resources :instructions, only: [:create, :destroy]
     resources :ratings, only: [:create]
-    resources :favorites, only: [:index, :create, :destroy]
+    resources :favorites, only: [:create, :destroy]
   end
 end

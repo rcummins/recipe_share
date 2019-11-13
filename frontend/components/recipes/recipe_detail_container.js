@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
 
-import { deleteRecipe } from '../../actions/recipe_actions';
+import { deleteRecipe, fetchRecipes } from '../../actions/recipe_actions';
 import { createFavorite, deleteFavorite } from '../../actions/favorite_actions';
 import {
+  recipesFetched,
   ingredientsArray,
   instructionsArray,
   selectRecipeAuthor,
@@ -14,6 +15,7 @@ const mapStateToProps = (state, ownProps) => {
   const recipe = state.entities.recipes[ownProps.match.params.recipeId];
 
   return{
+    recipesFetched: recipesFetched(state),
     recipe,
     author: selectRecipeAuthor(state, recipe),
     ingredients: ingredientsArray(state.entities, recipe),
@@ -25,6 +27,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
+  fetchRecipes: () => dispatch(fetchRecipes()),
   deleteRecipe: recipe => dispatch(deleteRecipe(recipe)),
   createFavorite: formFavorite => dispatch(createFavorite(formFavorite)),
   deleteFavorite: formFavorite => dispatch(deleteFavorite(formFavorite))

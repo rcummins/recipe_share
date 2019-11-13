@@ -5,14 +5,8 @@ import configureStore from './store/store';
 import Root from './components/root';
 
 document.addEventListener('DOMContentLoaded', () => {
-  let preloadedState;
-  if (window.currentUser) {
-    preloadedState = {
-      session: {
-        currentUser: window.currentUser
-      }
-    };
-  }
+  const preloadedState =
+    localStorage.state ? JSON.parse(localStorage.state) : {};
 
   const store = configureStore(preloadedState);
   const root = document.getElementById("content");

@@ -1,10 +1,3 @@
-export const fetchMyFavorites = userID => (
-  $.ajax({
-    method: 'GET',
-    url: `/api/favorites?user_id=${userID}`
-  })
-);
-
 export const createFavorite = favorite => (
   $.ajax({
     method: 'POST',

@@ -11,6 +11,12 @@ class RecipeDetail extends React.Component {
     this.handleToggleFavorite = this.handleToggleFavorite.bind(this);
   }
 
+  componentDidMount() {
+    if (!this.props.recipesFetched) {
+      this.props.fetchRecipes();
+    }
+  }
+
   handleDelete(e) {
     e.preventDefault();
     this.props.deleteRecipe({ recipe: this.props.recipe }).then(

@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 
 import { fetchRecipes, deleteRecipe } from '../../actions/recipe_actions';
-import { myRecipesArraySorted } from '../../reducers/selectors';
+import { myRecipesArraySorted, recipesFetched } from '../../reducers/selectors';
 import MyRecipes from './my_recipes';
 
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
+  recipesFetched: recipesFetched(state),
   myRecipesArraySorted: myRecipesArraySorted(state)
 });
 
