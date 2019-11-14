@@ -11,7 +11,7 @@ class Api::RecipesController < ApplicationController
 
     if @recipe.save
       @recipe = Recipe.includes(:author).find(@recipe.id)
-      render :show
+      render :show, status: :created
     else
       render json: @recipe.errors.full_messages, status: :unprocessable_entity
     end

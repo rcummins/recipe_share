@@ -12,9 +12,7 @@ const ingredientsReducer = ( oldState = {}, action ) => {
   switch(action.type) {
 
     case RECEIVE_INGREDIENT:
-      let newIngredient = {};
-      newIngredient[action.ingredient.id] = action.ingredient;
-      return Object.assign({}, oldState, newIngredient);
+      return Object.assign({}, oldState, action.ingredient);
 
     case REMOVE_INGREDIENT:
       newState = Object.assign({}, oldState);

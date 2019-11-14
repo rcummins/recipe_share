@@ -3,9 +3,7 @@ class Api::FavoritesController < ApplicationController
     @favorite = Favorite.new(favorite_params)
 
     if @favorite.save
-      render partial: 'favorite',
-        locals: {favorite: @favorite},
-        status: :created
+      render :show, status: :created
     else
       render json: @favorite.errors.full_messages, status: :unprocessable_entity
     end

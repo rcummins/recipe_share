@@ -3,5 +3,7 @@ json.recipe do
 end
 
 json.user do
-  json.partial! 'api/users/user', user: @recipe.author
+  json.set! @recipe.author.id do
+    json.partial! 'api/users/user', user: @recipe.author
+  end
 end

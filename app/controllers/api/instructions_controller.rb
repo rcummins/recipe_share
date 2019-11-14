@@ -3,9 +3,7 @@ class Api::InstructionsController < ApplicationController
     @instruction = Instruction.new(instruction_params)
 
     if @instruction.save
-      render partial: 'instruction',
-        locals: {instruction: @instruction},
-        status: :created
+      render :show, status: :created
     else
       render json: @instruction.errors.full_messages,
         status: :unprocessable_entity

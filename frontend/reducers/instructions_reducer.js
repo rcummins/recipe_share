@@ -12,9 +12,7 @@ const instructionsReducer = ( oldState = {}, action ) => {
   switch(action.type) {
 
     case RECEIVE_INSTRUCTION:
-      let newInstruction = {};
-      newInstruction[action.instruction.id] = action.instruction;
-      return Object.assign({}, oldState, newInstruction);
+      return Object.assign({}, oldState, action.instruction);
 
     case REMOVE_INSTRUCTION:
       newState = Object.assign({}, oldState);
