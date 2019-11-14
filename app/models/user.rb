@@ -6,9 +6,7 @@ class User < ApplicationRecord
   validates :session_token, presence: true, uniqueness: true
   validates :password, length: { minimum: 6 }, allow_nil: true
 
-  has_many :recipes, foreign_key: :author_id
   has_many :favorites
-  has_many :favorite_recipes, through: :favorites, source: :recipe
   has_many :ratings, foreign_key: :author_id
 
   after_initialize :ensure_session_token
