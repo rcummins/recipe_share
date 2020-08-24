@@ -42,8 +42,15 @@ class SessionForm extends React.Component {
       )
     }
 
+    let passwordAutocomplete;
+    if (this.props.formTitle === "Log in") {
+      passwordAutocomplete = "current-password";
+    } else {
+      passwordAutocomplete = "new-password";
+    }
+
     return(
-      <form className="session-form">
+      <form className="session-form" spellcheck="false">
 
         <h2>{this.props.formTitle}</h2>
 
@@ -54,6 +61,7 @@ class SessionForm extends React.Component {
           <input
             type="text"
             id="username"
+            autocomplete="username"
             onChange={this.handleInput('username')}
             value={this.state.username}
           />
@@ -64,6 +72,7 @@ class SessionForm extends React.Component {
           <input
             type="password"
             id="password"
+            autocomplete={passwordAutocomplete}
             onChange={this.handleInput('password')}
             value={this.state.password}
           />

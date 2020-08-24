@@ -84,7 +84,7 @@ class RecipeForm extends React.Component {
     }
 
     return(
-      <form className="recipe-form">
+      <form className="recipe-form" autocomplete="off">
 
         <h2>{this.props.formTitle}</h2>
 
