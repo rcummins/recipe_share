@@ -1,5 +1,5 @@
 # Recipe Share
-[renata-recipe-share.herokuapp.com](https://renata-recipe-share.herokuapp.com/?utm_source=github&utm_medium=readme&utm_campaign=github)
+See it live: [renata-recipe-share.herokuapp.com](https://renata-recipe-share.herokuapp.com/?utm_source=github&utm_medium=readme&utm_campaign=github)
 
 ## Application description
 Recipe Share is an app where you can post cooking recipes and discover new recipes based on their average rating. Recipe Share allows users to:
